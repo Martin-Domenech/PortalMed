@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Sidebar from "./components/sidebar/Sidebar"
+import Home from "./pages/Home/Home"
+import Login from "./pages/Login/Login"
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function LayoutWithSidebar({ children }) {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app-container">
+      <Sidebar />
+      <div className="main-content">{children}</div>
+    </div>
+  );
 }
 
-export default App
+
+
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="app-container">
+          <div className="main-content">
+            <Routes>
+              <Route path="/" element={<Login />} />
+              
+              <Route element={<LayoutWithSidebar />}>
+                <Route path="/home" element={<Home />} />
+                
+              </Route>
+            </Routes>
+          </div>
+      </div>
+    </BrowserRouter>
+  );
+}
+
+export default App;
