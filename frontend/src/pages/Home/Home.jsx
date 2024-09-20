@@ -3,7 +3,7 @@ function Home() {
   
   return (
     <div className="home">
-        <h1>Esta es mi pagina principalsadASDasdASDLJNKSGDFKJBSFGDFGJSKJFSDGJKNFDFGD</h1>
+        <h1>Esta es mi pagina principal</h1>
     </div>
   )
 }

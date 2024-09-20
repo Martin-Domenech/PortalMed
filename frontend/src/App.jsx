@@ -1,36 +1,53 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Sidebar from "./components/sidebar/Sidebar"
-import Home from "./pages/Home/Home"
-import Login from "./pages/Login/Login"
+import { BrowserRouter, Routes, Route} from "react-router-dom"
+import React, { useState } from "react"
+import { Sidebar } from "./components/sidebar/Sidebar"
+import { Light, Dark } from "./styles/Themes"
+import { ThemeProvider } from "styled-components"
+import styled from "styled-components"
+import Home  from "./pages/home/Home"
+import Register from "./pages/register/Register"
+import Login from "./pages/login/Login"
 
-function LayoutWithSidebar({ children }) {
-  return (
-    <div className="app-container">
-      <Sidebar />
-      <div className="main-content">{children}</div>
-    </div>
-  );
-}
-
-
+export const ThemeContext = React.createContext(null);
 
 function App() {
+
+  const [theme, setTheme] = useState("dark");
+  const themeStyle = theme === "light" ? Light : Dark;
+
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
   return (
-    <BrowserRouter>
-      <div className="app-container">
-          <div className="main-content">
-            <Routes>
-              <Route path="/" element={<Login />} />
-              
-              <Route element={<LayoutWithSidebar />}>
-                <Route path="/home" element={<Home />} />
-                
-              </Route>
+    
+    <ThemeContext.Provider value={{ setTheme, theme }}>
+      <ThemeProvider theme={themeStyle}>
+        <BrowserRouter>
+          <Container className={sidebarOpen ? "sidebarState active" : ""}>
+            <Sidebar
+              sidebarOpen={sidebarOpen}
+              setSidebarOpen={setSidebarOpen}
+            />
+            <Routes> 
+              <Route path="/" element={<Home />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
-          </div>
-      </div>
-    </BrowserRouter>
+          </Container>
+        </BrowserRouter>
+      </ThemeProvider>
+    </ThemeContext.Provider>
+    
   );
 }
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 90px auto;
+  background: ${({ theme }) => theme.bgtotal};
+  transition:all 0.3s ;
+  &.active {
+    grid-template-columns: 300px auto;
+  }
+  color:${({theme})=>theme.text};
+`;
 
-export default App;
+export default App
