@@ -2,16 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: 100vh;
-    background-color: #f7f9fc;
     padding: 20px;
+    padding-top: 5%;
+    font-family: 'Noto Sans Georgian', sans-serif;;
   }
   
   .login h2 {
     margin-bottom: 20px;
     font-size: 2rem;
-    color: #333;
+    color: white;
   }
   
   .form {
@@ -55,6 +55,10 @@
   .form button:hover {
     background-color: #0056b3;
   }
+  .form span{
+    font-size: 0.8rem;
+    color: red;
+  }
   
   .login a {
     margin-top: 15px;
@@ -65,4 +69,9 @@
   
   .login a:hover {
     text-decoration: underline;
+  }
+  .error{
+    color: red;
+    padding-bottom: 10px;
+    font-size: 0.8rem;
   }

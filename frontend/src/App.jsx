@@ -1,44 +1,114 @@
 import { BrowserRouter, Routes, Route} from "react-router-dom"
-import React, { useState } from "react"
+import './styles/App.css'
+import React, { useState, useEffect, Fragment} from "react"
 import { Sidebar } from "./components/sidebar/Sidebar"
 import { Light, Dark } from "./styles/Themes"
 import { ThemeProvider } from "styled-components"
 import styled from "styled-components"
-import Home  from "./pages/home/Home"
+import Home from './pages/home/Home'
 import Register from "./pages/register/Register"
 import Login from "./pages/login/Login"
+import UserHome from "./pages/userHome/UserHome"
+import NavBar from "./components/navbar/Navbar"
+import { Footer } from "./components/footer/Footer"
+import { CircularProgress } from "@mui/material"
+import UpdatePatient from "./pages/updatePatient/UpdatePatient"
+import PatientsDetail from "./pages/patientsDetail/PatientsDetail"
 
 export const ThemeContext = React.createContext(null);
 
 function App() {
 
-  const [theme, setTheme] = useState("dark");
-  const themeStyle = theme === "light" ? Light : Dark;
+  const [theme, setTheme] = useState("dark")
+  const themeStyle = theme === "light" ? Light : Dark
 
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(true)
+
+  const [userLogged, setUserLogged] = useState(false)
+
+  const [loading, setLoading] = useState(true)
+
+  const checkAuth = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/api/sessions/islogged', {
+        method: 'GET',
+        credentials: 'include'
+      })
+      setUserLogged(response.ok)
+  
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setLoading(false)
+    }
+  }  
+  
+  ///// revisar consumo del servidor /////
+  useEffect(() => {
+    checkAuth()
+
+    const intervalId = setInterval(() => {
+      checkAuth();
+    }, 300000); // 5 minutos = 300,000 milisegundos
+
+    return () => clearInterval(intervalId);
+  }, [])
+  /////
+
+  if (loading) {
+    return (
+      <div className="loadingCircle">
+        <CircularProgress  size="5rem"/>
+      </div>
+    )
+  }
+
+  const IsAuth = () => {
+    return (
+      <Container className={sidebarOpen ? "sidebarState active" : ""}>
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} checkAuth={checkAuth}/>
+        <Routes>
+          <Route path="/" element={<UserHome />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/update-patient/:id" element={<UpdatePatient />} />
+          <Route path="/patient-detail/:id" element={<PatientsDetail />} />
+        </Routes>
+      </Container>
+    )
+  }
+
+  const IsNotAuth = () => {
+    return (
+      <Fragment>
+        <NavBar /> 
+        <main className="bg">
+          <Routes >
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login checkAuth={checkAuth} />} />
+          </Routes>
+        </main>
+        <Footer />
+      </Fragment>
+    )
+  }
+
+
 
   return (
     
     <ThemeContext.Provider value={{ setTheme, theme }}>
       <ThemeProvider theme={themeStyle}>
         <BrowserRouter>
-          <Container className={sidebarOpen ? "sidebarState active" : ""}>
-            <Sidebar
-              sidebarOpen={sidebarOpen}
-              setSidebarOpen={setSidebarOpen}
-            />
-            <Routes> 
-              <Route path="/" element={<Home />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </Container>
+          {userLogged ? <IsAuth /> : <IsNotAuth />}
         </BrowserRouter>
       </ThemeProvider>
     </ThemeContext.Provider>
     
-  );
+  )
 }
+
+
+
 const Container = styled.div`
   display: grid;
   grid-template-columns: 90px auto;

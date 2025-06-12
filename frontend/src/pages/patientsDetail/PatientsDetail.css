@@ -1,0 +1,99 @@
+.patient-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90%;
+    margin: 3% auto;
+    padding: 20px;
+    gap: 20px;
+    
+}
+
+.personal-info {
+    flex: 1;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+.personal-info h4 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 2px solid #7BD9B1;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.personal-info p {
+    font-size: 1rem;
+    margin: 8px 0;
+    color: #555;
+}
+
+.personal-info span {
+    font-weight: bold;
+    color: #222;
+}
+
+.history-section {
+    flex: 2;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    min-height: 300px;
+}
+
+/* Contenedor de botones */
+.btns-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-top: 40px;
+}
+
+/* Estilos de los botones sobrios */
+.btns-container button {
+    display: flex;
+    align-items: center; 
+    gap: 5px;  
+    padding: 3px 5px;
+    font-size: 1rem;  
+    font-weight: 500;
+    color: #333;
+    background-color: #eaeaea;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btns-container button:hover {
+    color: #fff;
+}
+
+.btns-container button:first-child:hover { 
+    background-color: #357ABD;  
+    border-color: #1e4872;
+}
+
+.btns-container button:last-child:hover { 
+    background-color: #D9534F;   
+    border-color: #6e2826;
+}
+
+/* Para asegurar que se ve bien en móviles */
+@media (max-width: 768px) {
+    .patient-detail {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .personal-info, .history-section {
+        width: 100%;
+        max-width: none;
+    }
+}

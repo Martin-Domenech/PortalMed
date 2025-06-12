@@ -1,0 +1,9 @@
+.bg{
+    background-color: #1B2734;
+}
+.loadingCircle{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}

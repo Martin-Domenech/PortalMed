@@ -20,7 +20,7 @@ export const Light ={
     bg3: "rgb(230,230,230)",
     primary: "rgb(52, 131, 235)",
     bg4:"#9247FC",
-    bgtotal:"#EDF3FB",
+    bgtotal:"#D0D0D0",
     bgtgderecha:"#fff",
     barrascroll: "#a8a7a7",
     bgBorder: "#d1d1d1",

@@ -1,0 +1,101 @@
+.footer {
+    background-color: #001844;
+    margin-top: 50px;
+    width: 100%;
+    margin-top: auto;
+
+}
+
+.footerContainer {
+    width: 100%;
+    padding: 20px 30px 10px;
+}
+
+.redesIconos {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0 10px;
+}
+
+.redesIconos a {
+    text-decoration: none;
+    padding: 10px;
+    background-color: white;
+    margin-left: 5%;
+    border-radius: 20%;
+}
+
+.redesIconos a i {
+    font-size: 2em;
+    color: black;
+    opacity: 0.9;
+}
+
+/* Hover effect on social media icon */
+.redesIconos a:hover {
+    background-color: #111;
+    transition: 0.5s;
+}
+
+.redesIconos a:hover i {
+    color: white;
+    transition: 0.5s;
+}
+
+.footerNav {
+    margin: 10px 0 10px;
+}
+
+.footerNav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.footerNav ul li a {
+    color: white;
+    margin: 25px;
+    text-decoration: none;
+    font-size: 1.2em;
+    opacity: 0.7;
+    transition: 0.5s;
+}
+
+.footerNav ul li a:hover {
+    opacity: 1;
+}
+
+.footerBottom {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+}
+
+.footerBottom p {
+    color: white;
+}
+
+.designer {
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0px 5px;
+}
+
+@media (max-width: 700px) {
+    .footerNav ul {
+        flex-direction: column;
+    }
+
+    .footerNav ul li {
+        width: 100%;
+        text-align: center;
+        margin: 10px;
+    }
+
+    .socialIcons a {
+        padding: 8px;
+        margin: 4px;
+    }
+}

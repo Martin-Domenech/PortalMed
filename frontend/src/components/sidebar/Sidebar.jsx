@@ -17,12 +17,13 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-export function Sidebar({ sidebarOpen, setSidebarOpen }) {
+export function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
   const ModSidebaropen = () => {
-    setSidebarOpen(!sidebarOpen);
+    setSidebarOpen(!sidebarOpen)
   }
   
-  const { setTheme, theme } = useContext(ThemeContext);
+  const { setTheme, theme } = useContext(ThemeContext)
+
   const CambiarTheme = () => {
     setTheme((theme) => (theme === "light" ? "dark" : "light"));
   }
@@ -40,16 +41,20 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }) {
       })
       if (!response.ok) return console.error('Error al cerrar sesion')
       console.log('Logout exitoso')
+
+      checkAuth()
+
       navigate('/')
       
     } catch (error) {
       console.error('Error:', error);
     }
   }
+  
 
 
   return (
-    <Container isOpen={sidebarOpen} themeUse={theme}>
+    <Container $isOpen={sidebarOpen} $themeUse={theme}>
       <button className="Sidebarbutton" onClick={ModSidebaropen}>
         <AiOutlineLeft />
       </button>
@@ -155,17 +160,17 @@ const Container = styled.div`
   background: ${(props) => props.theme.bg};
   position: sticky;
   top: 0;
-  padding-top: ${({ isOpen }) => (isOpen ? `10px` : '50px')};
-  height: 100vh; /* Ocupa toda la altura del viewport */
+  padding-top: ${({ $isOpen }) => ($isOpen ? '10px' : '50px')};
+  height: 100vh; 
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Evita el scroll en el sidebar */
+  overflow: hidden; 
   border-right: 1px solid ${(props) => props.theme.bgBorder};
 
   .Sidebarbutton {
     position: absolute;
     top: ${v.smSpacing};
-    right: ${({ isOpen }) => (isOpen ? `5px` : '25px')}; /* Ajusta según el ancho del botón y el contenedor */
+    right: ${({ $isOpen }) => ($isOpen ? `5px` : '25px')}; /* Ajusta según el ancho del botón y el contenedor */
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -177,7 +182,7 @@ const Container = styled.div`
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s;
-    transform: ${({ isOpen }) => (isOpen ? `initial` : `rotate(180deg)`)}; /* Rotación según el estado abierto/cerrado */
+    transform: ${({ $isOpen }) => ($isOpen ? `initial` : `rotate(180deg)`)}; /* Rotación según el estado abierto/cerrado */
     border: none;
     letter-spacing: inherit;
     color: inherit;
@@ -203,7 +208,7 @@ const Container = styled.div`
         height: auto;
       }
       cursor: pointer;
-      transform: ${({ isOpen }) => (isOpen ? `scale(0.9)` : `scale(0.7)`)};
+      transform: ${({ $isOpen }) => ($isOpen ? `scale(0.9)` : `scale(0.7)`)};
     }
   }
 
@@ -254,14 +259,14 @@ const Container = styled.div`
       display: block;
       padding: 10px;
       font-weight: 500;
-      opacity: ${({ isOpen }) => (isOpen ? `1` : `0`)};
+      opacity: ${({ $isOpen }) => ($isOpen ? `1` : `0`)};
       transition: all 0.3s;
       white-space: nowrap;
       overflow: hidden;
     }
 
     .Togglecontent {
-      margin: ${({ isOpen }) => (isOpen ? `auto 40px` : `auto 15px`)};
+      margin: ${({ $isOpen }) => ($isOpen ? `auto 40px` : `auto 15px`)};
       width: 36px;
       height: 20px;
       padding-bottom: 30px;
@@ -310,8 +315,8 @@ const Container = styled.div`
               left: 0;
               right: 0;
               bottom: 0;
-              background: ${({ themeUse }) =>
-                themeUse === "light" ? v.lightcheckbox : v.checkbox};
+              background: ${({ $themeUse }) =>
+                $themeUse === "light" ? v.lightcheckbox : v.checkbox};
               transition: 0.4s;
 
               &::before {

@@ -1,0 +1,18 @@
+
+.inputFilter{
+    padding: 10px 0 10px;
+}
+.paginated{
+    width: 70%;
+    display: flex;
+    padding-top: 10px;
+}
+.crud-icons{
+    gap: 5px;
+    padding-right: 10px;
+}
+.icon-btn-table{
+    cursor: pointer;
+    border: 0;
+    background-color: rgba(240, 248, 255, 0);
+}

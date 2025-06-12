@@ -1,0 +1,15 @@
+.navbar{
+    background-color: #74D7AD !important;
+}
+.navbar img{
+    background-color: rgb(0, 0, 0);
+    margin-left: 5%;
+}
+.links{
+    padding-left: 5%;
+    gap: 10px;
+}
+.links button{
+    color: rgb(2, 2, 2);
+    font-weight: bolder;
+}

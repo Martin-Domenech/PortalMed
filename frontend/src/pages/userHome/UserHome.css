@@ -1,0 +1,75 @@
+
+.userHome {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: flex-start;
+    min-height: 100vh; 
+    height: auto; 
+    overflow-y: auto; 
+}
+.userHome .patients-table{
+    margin: 30px;
+    width: 60%;
+}
+
+.formPatientRegister{
+    background-color: #F7F7F7;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    width: 35%;
+    margin: 80px 60px 30px 0px;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    gap: 10px;
+}
+.formPatientRegister .form-patient{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 5px;
+}
+.formPatientRegister .form-patient input{
+    height: 30px;
+}
+.formPatientRegister .form-patient select{
+    height: 30px;
+}
+.formPatientRegister .form-patient .campos-obligatorios{
+    padding: 10px;
+}
+.formPatientRegister .form-patient button{
+    background-color: #7BD9B1;
+    border: 1px solid black;
+    height: 30px;
+    border-radius: 3px;
+}
+.formPatientRegister .form-patient button:hover{
+    background-color: #71c7a2;
+    cursor: pointer;
+}
+
+.loadingCircle{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-alert {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 25%;
+    transition: opacity 2s ease-in-out;
+}
+  
+.success-alert .hide{
+    opacity: 0;
+    visibility: hidden;
+}

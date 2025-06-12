@@ -72,7 +72,6 @@ function Register() {
                 
                 <button type="submit">Registrarse</button>
             </form>
-            <a href="/login">Iniciar sesión</a>
         </div>
     );
 }
