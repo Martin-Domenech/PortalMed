@@ -12,7 +12,6 @@ import evosRouter from './api/evos.js'
 
 const app = express();
 
-const PORT = config.port
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -35,6 +34,6 @@ app.use('/api/patients', patientsRouter)
 app.use('/api/evos', evosRouter)
 
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`Server is running on port ${PORT}`);
 });
