@@ -5,8 +5,8 @@ import { Sidebar } from "./components/sidebar/Sidebar"
 import { Light, Dark } from "./styles/Themes"
 import { ThemeProvider } from "styled-components"
 import styled from "styled-components"
-import Home from './pages/home/Home_temp'
 import Register from "./pages/register/Register"
+import Home from './pages/home/Home'
 import Login from "./pages/login/Login"
 import UserHome from "./pages/userHome/UserHome"
 import NavBar from "./components/navbar/Navbar"
@@ -19,6 +19,7 @@ export const ThemeContext = React.createContext(null);
 const API_URL = import.meta.env.VITE_API_PORTALMED
 
 function App() {
+
 
   const [theme, setTheme] = useState("dark")
   const themeStyle = theme === "light" ? Light : Dark
