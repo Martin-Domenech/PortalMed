@@ -1,3 +1,41 @@
-.form-patient{
-    margin: 0 auto;
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+.form-update-patient{
+    background-color: #F7F7F7;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    width: 35%;
+    margin: 80px 60px 30px 0px;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    gap: 10px;
+}
+.form-update-patient .form-patient{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 5px;
+}
+.form-update-patient .form-patient input{
+    height: 30px;
+}
+.form-update-patient .form-patient select{
+    height: 30px;
+}
+.form-update-patient .form-patient .campos-obligatorios{
+    padding: 10px;
+}
+.form-update-patient .form-patient button{
+    background-color: #7BD9B1;
+    border: 1px solid black;
+    height: 30px;
+    border-radius: 3px;
+}
+.form-update-patient .form-patient button:hover{
+    background-color: #71c7a2;
+    cursor: pointer;
 }

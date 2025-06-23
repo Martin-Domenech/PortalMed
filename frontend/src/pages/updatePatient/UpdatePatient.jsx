@@ -78,94 +78,97 @@ function UpdatePatient () {
       }
 
     return (
-        <section className="formPatientRegister">
-        {loading ? (
-            <div className="loadingCircle">
-                <CircularProgress size="5rem" />
-            </div>
-            ) : (
-                <div>
-                    <h4 >Modificar datos del paciente:</h4>
-                    <form onSubmit={handleUpdate} className="form-patient" >
+        <div className="form-container">
         
-                    <label htmlFor="first_name">* Nombre:</label>
-                    <input
-                        type="text"
-                        name="first_name"
-                        value={patient.first_name}
-                        onChange={handleChange}
-                        required
-                        autoComplete="off"
-                    />
-        
-                    <label htmlFor="last_name">* Apellido:</label>
-                    <input
-                        type="text"
-                        name="last_name"
-                        value={patient.last_name}
-                        onChange={handleChange}
-                        required
-                        autoComplete="off"
-                    />
-        
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={patient.email}
-                        onChange={handleChange}
-                        autoComplete="off"
-                        className="email-input"
-                    />
-                    
-                    <label htmlFor="dni">DNI:</label>
-                    <input
-                        type="text"
-                        name="dni"
-                        value={patient.dni}
-                        onChange={handleChange}
-                        required
-                        autoComplete="off"
-                    />
-        
-                    <label htmlFor="birthdate">Fecha de nacimiento:</label>
-                    <input
-                        type="date"
-                        name="birthdate"
-                        value={patient.birthdate}
-                        onChange={handleChange}
-                        autoComplete="off"
-                    />
-
-                    <label htmlFor="gender">Género:</label>
-                    <select
-                        name="gender"
-                        value={patient.gender}
-                        onChange={handleChange}
-                    >
-                        <option value="">Seleccione</option>
-                        <option value="hombre">Hombre</option>
-                        <option value="mujer">Mujer</option>
-                        <option value="otro">Otro</option>
-                    </select>
-        
-                    <label htmlFor="biologicalGender">Género biológico:</label>
-                    <select
-                        name="biologicalGender"
-                        value={patient.biologicalGender}
-                        onChange={handleChange}
-                    >
-                        <option value="">Seleccione</option>
-                        <option value="hombre">Hombre</option>
-                        <option value="mujer">Mujer</option>
-                    </select>
-        
-                    <p className="campos-obligatorios">* Campos obligatorios</p>
-                    <button type="submit" className="btn-patient">Modificar datos del paciente</button>
-                    </form>
+            <section className="form-update-patient">
+            {loading ? (
+                <div className="loadingCircle">
+                    <CircularProgress size="5rem" />
                 </div>
-        )}
-        </section>
+                ) : (
+                    <div>
+                        <h4 >Modificar datos del paciente:</h4>
+                        <form onSubmit={handleUpdate} className="form-patient" >
+            
+                        <label htmlFor="first_name">* Nombre:</label>
+                        <input
+                            type="text"
+                            name="first_name"
+                            value={patient.first_name}
+                            onChange={handleChange}
+                            required
+                            autoComplete="off"
+                        />
+            
+                        <label htmlFor="last_name">* Apellido:</label>
+                        <input
+                            type="text"
+                            name="last_name"
+                            value={patient.last_name}
+                            onChange={handleChange}
+                            required
+                            autoComplete="off"
+                        />
+            
+                        <label htmlFor="email">Email:</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={patient.email}
+                            onChange={handleChange}
+                            autoComplete="off"
+                            className="email-input"
+                        />
+                        
+                        <label htmlFor="dni">DNI:</label>
+                        <input
+                            type="text"
+                            name="dni"
+                            value={patient.dni}
+                            onChange={handleChange}
+                            required
+                            autoComplete="off"
+                        />
+            
+                        <label htmlFor="birthdate">Fecha de nacimiento:</label>
+                        <input
+                            type="date"
+                            name="birthdate"
+                            value={patient.birthdate}
+                            onChange={handleChange}
+                            autoComplete="off"
+                        />
+
+                        <label htmlFor="gender">Género:</label>
+                        <select
+                            name="gender"
+                            value={patient.gender}
+                            onChange={handleChange}
+                        >
+                            <option value="">Seleccione</option>
+                            <option value="hombre">Hombre</option>
+                            <option value="mujer">Mujer</option>
+                            <option value="otro">Otro</option>
+                        </select>
+            
+                        <label htmlFor="biologicalGender">Género biológico:</label>
+                        <select
+                            name="biologicalGender"
+                            value={patient.biologicalGender}
+                            onChange={handleChange}
+                        >
+                            <option value="">Seleccione</option>
+                            <option value="hombre">Hombre</option>
+                            <option value="mujer">Mujer</option>
+                        </select>
+            
+                        <p className="campos-obligatorios">* Campos obligatorios</p>
+                        <button type="submit" className="btn-patient">Modificar datos del paciente</button>
+                        </form>
+                    </div>
+            )}
+            </section>
+        </div>
     )
 } 
 
