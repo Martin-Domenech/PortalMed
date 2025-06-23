@@ -6,7 +6,7 @@ import { Light, Dark } from "./styles/Themes"
 import { ThemeProvider } from "styled-components"
 import styled from "styled-components"
 import Register from "./pages/register/Register"
-import Home from './pages/home/Home'
+import Home from "./pages/home/Home"
 import Login from "./pages/login/Login"
 import UserHome from "./pages/userHome/UserHome"
 import NavBar from "./components/navbar/Navbar"
