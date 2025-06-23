@@ -8,7 +8,7 @@ import CheckIcon from '@mui/icons-material/Check';
 
 
 
-
+const API_URL = import.meta.env.VITE_API_PORTALMED
 function UserHome() {
 
   const [patient, setPatient] = useState({
@@ -44,7 +44,7 @@ function UserHome() {
       if(search) query += `&search=${search}`
 
 
-      const response = await fetch(`http://localhost:8080/api/patients?${query}`, {
+      const response = await fetch(`${API_URL}/api/patients?${query}`, {
         method: 'GET',
         credentials: 'include',
         headers:{
@@ -76,7 +76,7 @@ function UserHome() {
     setLoading(true)
 
     try {
-      const response = await fetch('http://localhost:8080/api/patients/register', {
+      const response = await fetch(`${API_URL}/api/patients/register`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/json',

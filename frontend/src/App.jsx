@@ -16,6 +16,7 @@ import UpdatePatient from "./pages/updatePatient/UpdatePatient"
 import PatientsDetail from "./pages/patientsDetail/PatientsDetail"
 
 export const ThemeContext = React.createContext(null);
+const API_URL = import.meta.env.VITE_API_PORTALMED
 
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/sessions/islogged', {
+      const response = await fetch(`${API_URL}/api/sessions/islogged`, {
         method: 'GET',
         credentials: 'include'
       })

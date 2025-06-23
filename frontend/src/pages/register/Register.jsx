@@ -2,6 +2,8 @@ import './Register.css'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
+const API_URL = import.meta.env.VITE_API_PORTALMED
 function Register() {
     const [formData, setFormData] = useState({
         first_name: '',
@@ -25,7 +27,7 @@ function Register() {
         e.preventDefault()
 
         try{
-            const response = await fetch('http://localhost:8080/api/sessions/register', {
+            const response = await fetch(`${API_URL}/api/sessions/register`, {
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json',

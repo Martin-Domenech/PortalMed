@@ -2,6 +2,8 @@ import './Login.css'
 import { useState } from 'react' 
 import { useNavigate } from 'react-router-dom';
 
+
+const API_URL = import.meta.env.VITE_API_PORTALMED
 function Login ({checkAuth}) {
     const [error, setError] = useState(false)
     const [user, setUser] = useState({
@@ -23,7 +25,7 @@ function Login ({checkAuth}) {
         e.preventDefault()
 
         try {
-            const response = await fetch('http://localhost:8080/api/sessions/login', {
+            const response = await fetch(`${API_URL}/api/sessions/login`, {
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json',

@@ -16,7 +16,7 @@ import { ThemeContext } from "../../App";
 import { useNavigate } from 'react-router-dom';
 
 
-
+const API_URL = import.meta.env.VITE_API_PORTALMED
 export function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
   const ModSidebaropen = () => {
     setSidebarOpen(!sidebarOpen)
@@ -32,7 +32,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/sessions/logout', {
+      const response = await fetch(`${API_URL}/api/sessions/logout`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/json',

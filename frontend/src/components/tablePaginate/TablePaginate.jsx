@@ -23,7 +23,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useNavigate } from "react-router-dom";
 
-
+const API_URL = import.meta.env.VITE_API_PORTALMED
 function PaginateTable({ patients, setPatients, page, setPage, search, setSearch }) {
 
   const rowsPerPage = 10
@@ -63,7 +63,7 @@ function PaginateTable({ patients, setPatients, page, setPage, search, setSearch
   const deletePatient = async () => {
 
     try {
-      const response = await fetch(`http://localhost:8080/api/patients/delete/${deleteID}`, {
+      const response = await fetch(`${API_URL}/api/patients/delete/${deleteID}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

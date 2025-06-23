@@ -14,7 +14,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from "@mui/material";
 
-
+const API_URL = import.meta.env.VITE_API_PORTALMED
 function PatientsDetail () {
     const navigate = useNavigate()
     const {id} = useParams()
@@ -89,7 +89,7 @@ function PatientsDetail () {
     const getPatientById = async () => {
         setLoading(true)
         try {
-            const response = await fetch(`http://localhost:8080/api/patients/${id}`, {
+            const response = await fetch(`${API_URL}/api/patients/${id}`, {
             method: 'GET',
             credentials: 'include',
             headers: {
@@ -119,7 +119,7 @@ function PatientsDetail () {
 
     const deletePatient = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/patients/delete/${id}`, {
+      const response = await fetch(`${API_URL}/api/patients/delete/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ function PatientsDetail () {
     }
     const deleteEvo = async(evoId) => {
       try{
-        const response = await fetch(`http://localhost:8080/api/evos/delete/${evoId}`, {
+        const response = await fetch(`${API_URL}/api/evos/delete/${evoId}`, {
           method: 'DELETE',
           headers: {
               'Content-Type': 'application/json',
@@ -160,8 +160,8 @@ function PatientsDetail () {
       e.preventDefault()
       try {
         const url = isEditing
-          ? `http://localhost:8080/api/evos/update/${evoBeingEdited}`
-          : `http://localhost:8080/api/evos/register/${id}`
+          ? `${API_URL}/api/evos/update/${evoBeingEdited}`
+          : `${API_URL}/api/evos/register/${id}`
 
         const method = isEditing ? 'PUT' : 'POST'
 
@@ -190,7 +190,7 @@ function PatientsDetail () {
 
     const getEvolutionsByPatient = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/evos/${id}`, {
+        const response = await fetch(`${API_URL}/api/evos/${id}`, {
           method: 'GET',
           credentials: 'include',
           headers: {

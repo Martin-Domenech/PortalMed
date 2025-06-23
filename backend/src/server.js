@@ -18,10 +18,27 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3000;
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://portalmedapp.com', 
+  'https://www.portalmedapp.com',
+  'https://api.portalmedapp.com',
+]
+
 app.use(cors({
-    origin: 'http://localhost:5173', // Permitir solicitudes solo desde este origen
-    credentials: true,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error('Origen no permitido por CORS'))
+    }
+  },
+  credentials: true
 }))
+// app.use(cors({
+//     origin: 'http://localhost:5173', // Permitir solicitudes solo desde este origen
+//     credentials: true,
+// }))
 
 app.set('views', './src/views');
 
