@@ -16,6 +16,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+const PORT = process.env.PORT || 3000;
+
 app.use(cors({
     origin: 'http://localhost:5173', // Permitir solicitudes solo desde este origen
     credentials: true,
@@ -34,6 +36,6 @@ app.use('/api/patients', patientsRouter)
 app.use('/api/evos', evosRouter)
 
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
