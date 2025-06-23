@@ -3,6 +3,7 @@ import './UpdatePatient.css'
 import { useNavigate, useParams } from "react-router-dom"
 import { CircularProgress } from "@mui/material"
 
+const API_URL = import.meta.env.VITE_API_PORTALMED
 function UpdatePatient () {
     const navigate = useNavigate()
     const {id} = useParams()
@@ -22,7 +23,7 @@ function UpdatePatient () {
     const getPatientById = async () => {
         setLoading(true)
         try {
-            const response = await fetch(`http://localhost:8080/api/patients/${id}`, {
+            const response = await fetch(`${API_URL}/api/patients/${id}`, {
             method: 'GET',
             credentials: 'include',
             headers: {
@@ -57,7 +58,7 @@ function UpdatePatient () {
         e.preventDefault()
         setLoading(true)
         try {
-          const response = await fetch(`http://localhost:8080/api/patients/update/${id}`, {
+          const response = await fetch(`${API_URL}/api/patients/update/${id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',

@@ -5,7 +5,7 @@ import { Sidebar } from "./components/sidebar/Sidebar"
 import { Light, Dark } from "./styles/Themes"
 import { ThemeProvider } from "styled-components"
 import styled from "styled-components"
-import Home from './pages/home/Home'
+import Home from './pages/Home/Home'
 import Register from "./pages/register/Register"
 import Login from "./pages/login/Login"
 import UserHome from "./pages/userHome/UserHome"
