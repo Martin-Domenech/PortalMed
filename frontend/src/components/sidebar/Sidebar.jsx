@@ -40,12 +40,8 @@ export function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
         credentials: 'include',
       })
       if (!response.ok) return console.error('Error al cerrar sesion')
-      console.log('Logout exitoso')
-
       checkAuth()
-
       navigate('/')
-      
     } catch (error) {
       console.error('Error:', error);
     }
@@ -122,22 +118,19 @@ const linksArray = [
   {
     label: "Pacientes",
     icon: <AiOutlineUsergroupAdd />,
-    to: "/estadisticas",
+    to: "/",
   },
   {
     label: "Turnos",
     icon: <AiOutlineCalendar />,
-    to: "/calendar",
+    to: "/",
   },
   {
-    label: "Iniciar sesión",
-    icon: <MdOutlineAnalytics />,
-    to: "/login",
+ 
+    
   },
   {
-    label: "Registrar usuario",
-    icon: <MdOutlineAnalytics />,
-    to: "/register",
+
   },
 ];
 const secondarylinksArray = [

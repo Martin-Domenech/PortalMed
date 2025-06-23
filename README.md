@@ -42,3 +42,10 @@ EVOLUCIONES:
 
 
 
+usuario de prueba
+mail: user@gmail.com
+pass: user01
+
+
+hostinger portalmedapp-api.com
+en railway alojar el back y que apunte a la api

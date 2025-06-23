@@ -47,7 +47,7 @@
     min-height: 300px;
 }
 
-/* Contenedor de botones */
+
 .btns-container {
     display: flex;
     justify-content: flex-end;
@@ -55,7 +55,7 @@
     margin-top: 40px;
 }
 
-/* Estilos de los botones sobrios */
+
 .btns-container button {
     display: flex;
     align-items: center; 
@@ -85,7 +85,7 @@
     border-color: #6e2826;
 }
 
-/* Para asegurar que se ve bien en móviles */
+
 @media (max-width: 768px) {
     .patient-detail {
         flex-direction: column;
@@ -96,4 +96,102 @@
         width: 100%;
         max-width: none;
     }
+}
+
+.cont-evoluciones {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: #f8f9fa;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    height: 80vh;
+    
+}
+.nueva-evo-btn {
+  text-transform: none !important;
+}
+.cont-evoluciones .nueva-evo-btn{
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    font-size: 1.2rem;  
+    font-weight: 500;
+    color: #333;
+    background-color: #62D2A2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    margin: 30px auto;
+
+}
+.cont-evoluciones .nueva-evo-btn:hover{
+    background-color: #69e2ae;
+}
+
+.cont-evoluciones .evoluciones{
+    border-top: 1px black;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    margin-left: 3%;
+}
+.cont-evoluciones h4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #333;
+    padding:  20px 0 30px 0;
+}
+.motivo_consulta {
+  width: 100%;        /* altura estándar */
+  resize: vertical;    /* permite al usuario agrandar si quiere */
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.info_consulta {
+  width: 100%;
+  height: 160px;       /* el doble de alto por defecto */
+  resize: vertical;    /* también permite agrandar */
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.evo-card {
+  padding: 10px;
+  margin-bottom: 10px;
+  
+}
+.evo-card .end-card{
+    display: flex;
+    justify-content: space-between;
+}
+.evo-card .end-card .crud-btns{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    padding-bottom: 10px;
+    gap: 5px;
+}
+.evo-card .end-card .crud-btns .update:hover{
+    cursor: pointer;
+}
+.evo-card .end-card .crud-btns .delete:hover{
+    cursor: pointer;
+}
+.evo-card .fecha{
+  display: flex;
+  justify-content: start;
+  margin: 30px 0 20px 0;
+}
+.evo-card p{
+  margin-bottom: 5px;
 }

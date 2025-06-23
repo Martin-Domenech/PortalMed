@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import './Navbar.css'
 
-const pages = ['Inicio', 'Iniciar sesión', 'Pricing', 'Blog'];
+const pages = ['Inicio', 'Iniciar sesión', 'Sobre nosotros', 'Contacto'];
 
 function NavBar() {
   const navigate = useNavigate();

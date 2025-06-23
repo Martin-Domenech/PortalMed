@@ -39,7 +39,6 @@ export const detelePatient = async(patientID) => {
     } catch (error) {
         throw new Error('Error al registrar paciente: ' + error.message)
     }
-    
 }
 
 export const updatePatientService = async(patient, id) => {

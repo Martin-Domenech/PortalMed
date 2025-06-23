@@ -55,10 +55,8 @@ function Login ({checkAuth}) {
             setError(true)
         }
     }
-
-
+    
     return(
-
         <div className="login">
             <h2>Iniciar sesión:</h2>
             <form onSubmit={handleSubmit} className='form'>

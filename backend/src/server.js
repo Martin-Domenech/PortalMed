@@ -8,7 +8,7 @@ import passport from 'passport'
 import initializePassport from './config/passport.config.js'
 import config from './config/config.js'
 import patientsRouter from './api/patients.js'
-
+import evosRouter from './api/evos.js'
 
 const app = express();
 
@@ -32,6 +32,7 @@ app.use(passport.initialize())
 
 app.use('/api/sessions', sessionsRouter)
 app.use('/api/patients', patientsRouter)
+app.use('/api/evos', evosRouter)
 
 
 app.listen(PORT, () => {
