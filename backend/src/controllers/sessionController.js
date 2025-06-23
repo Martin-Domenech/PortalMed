@@ -17,17 +17,17 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        const { email, password } = req.body;
-        const userData = await loginUser(email, password);
+        const { username, password } = req.body;
+        const userData = await loginUser(username, password);
         if (userData.error) return res.status(401).json({ message: 'credenciales incorrectas' })
 
         const { _id, first_name, last_name, role } = userData
-        const token = jwt.sign({ id: _id, first_name, last_name, role }, config.secret_key, { expiresIn: "2h" })
+        const token = jwt.sign({ id: _id, first_name, last_name, role }, config.secret_key, { expiresIn: "24h" })
 
         res.cookie('authToken', token, {
             httpOnly: true,
             secure: config.node_env === 'production',
-            maxAge: 2 * 60 * 60 * 1000
+            maxAge: 24 * 60 * 60 * 1000
         })
 
         res.json({ message: 'Autenticado correctamente' })

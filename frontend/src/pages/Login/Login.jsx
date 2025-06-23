@@ -7,7 +7,7 @@ const API_URL = import.meta.env.VITE_API_PORTALMED
 function Login ({checkAuth}) {
     const [error, setError] = useState(false)
     const [user, setUser] = useState({
-        email: '',
+        username: '',
         password: ''
     })
 
@@ -63,10 +63,10 @@ function Login ({checkAuth}) {
             <h2>Iniciar sesión:</h2>
             <form onSubmit={handleSubmit} className='form'>
                 {error ? 
-                    <label htmlFor="email"><span>*   </span>  Ingrese su correo electrónico:</label> :
-                    <label htmlFor="email">Ingrese su correo electrónico:</label>
+                    <label htmlFor="username"><span>*   </span>  Ingrese su nombre de usuario:</label> :
+                    <label htmlFor="username">Ingrese su usuario:</label>
                 }
-                <input type="text" name="email" value={user.email} onChange={handleChange} required/>
+                <input type="text" name="username" value={user.username} onChange={handleChange} required/>
                 
                 {error ? 
                     <label htmlFor="password"><span>*   </span>Contraseña:</label> :

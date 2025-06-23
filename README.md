@@ -1,51 +1,122 @@
+#  PortalMed
 
-componentes utiles de material ui
-https://mui.com/x/common-concepts/custom-components/
-https://mui.com/material-ui/react-app-bar/#app-bar-with-responsive-menu
-https://mui.com/toolpad/core/react-sign-in-page/
+**PortalMed** es una aplicación web fullstack para la **gestión de pacientes y sus historial de evoluciones médicas**. Permite a profesionales médicos registrar usuarios, cargar pacientes, registrar y consultar historiales clínicos, y almacenar archivos relacionados con cada paciente.
 
-creacion de imagenes por ia:
-https://designer.microsoft.com/image-creator
+> 🔐 El sistema utiliza autenticación con JWT y ofrece una interfaz moderna construida con React.
 
-Admin User: tinchodome@gmail.com    pass: aaaj1985
+## 🚀 Demo en producción
 
-//////////// Si por algun motivo hay que insertar un user admin//////////////////
-import User from '../models/userModel.js'; // Asegúrate de tener el modelo importado
+🌐 https://portalmedapp.com  
+📡 API: https://api.portalmedapp.com
 
-const newUser = {
-    first_name: "Martin",
-    last_name: "Domenech",
-    email: "tinchodome@gmail.com",
-    age: 25, // Puedes usar un número directamente
-    password: "$2b$10$DKYWDbqqP0OsvMlFqZ3WQuNGXy5ZegMso1KulLjKjovI7nQERD/0m", // Contraseña hasheada
-    role: "admin"
-};
+---
 
-try {
-    const user = new User(newUser); // Crear una nueva instancia del modelo
-    await user.save(); // Guardar el nuevo usuario en la base de datos
-    console.log("Usuario insertado con éxito:", user);
-} catch (error) {
-    console.error("Error al insertar el usuario:", error);
-}
-/////////////////////////////////////////////////////////////////
- 
-para detail patient:
-https://mui.com/material-ui/react-bottom-navigation/
+## 🛠️ Tecnologías utilizadas
 
-EVOLUCIONES:
-    fecha
-    motivo de consulta
-    info de evolucion
-    imagenes
-    consentimientos informados
+### Backend (Node.js + Express)
 
+- Express.js
+- MongoDB + Mongoose
+- JWT para autenticación
+- Bcrypt para hash de contraseñas
+- Multer (para subir archivos)
+- CORS
+- Dotenv
+- Cookie-parser
 
+### Frontend (React)
 
-usuario de prueba
-mail: user@gmail.com
-pass: user01
+- React + Vite
+- React Router DOM
+- CSS personalizado
+- Fetch API
+- Manejo de cookies con `credentials: 'include'`
 
+---
 
-hostinger portalmedapp-api.com
-en railway alojar el back y que apunte a la api
+## 🔐 Autenticación
+
+- Los usuarios se registran con `username`, `password`, `first_name`, `last_name`, `email`.
+- El sistema genera un JWT que se guarda en una **cookie HTTPOnly**.
+- Acciones protegidas (como ver evoluciones) requieren que el token sea válido.
+
+---
+
+## 🧪 Endpoints principales del backend
+
+- POST /api/sessions/register → Registro de usuario (Solu un user con rol: admin puede registrarlo)
+- POST /api/sessions/login → Login (genera JWT)
+- GET /api/sessions/current → Devuelve usuario autenticado
+- POST /api/patients → Crea un nuevo paciente
+- GET /api/patients/:id → Consulta un paciente
+- PUT /api/patients/update/:id → Modifica un paciente
+- DELETE /api/patients/delete/:id → Elimina un paciente
+- POST /api/evos/:patientId → Crea una evolución
+- PUT /api/evos/update/:evoId → Modifica una evolucion
+- GET /api/evos/:patientId → Lista de evoluciones
+- DELETE /api/patients/delete/:evoId → Elimina una evolucion
+
+## 🧑‍💻 Instalación local
+
+### Requisitos
+
+- Node.js v18+
+- MongoDB Atlas o local
+- Yarn o npm
+
+### Backend
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## 🌐 Producción
+
+- **Frontend** desplegado en **Vercel**
+- **Backend** desplegado en **Railway**
+- **Dominio principal**: [https://portalmedapp.com](https://portalmedapp.com)
+- **Subdominio del backend**: [https://api.portalmedapp.com](https://api.portalmedapp.com)
+- Ambas partes conectadas con **CORS** y **cookies activadas**
+
+---
+
+## 📸 Funcionalidades
+
+- ✅ Registro e inicio de sesión con JWT
+- ✅ Gestión de pacientes
+- ✅ Registro de evoluciones médicas (motivo y descripción)
+- ✅ Interfaz protegida para médicos logueados
+- ✅ Modal para agregar nuevas evoluciones
+- ✅ Responsive design (pantalla completa y móviles)
+
+---
+
+## 📌 ToDo (futuro)
+
+- [ ] Capacidad para cargar imágenes y archivos en las evoluciones médicas.
+- [ ] Sistema de calendario para el manejo de turnos.
+- [ ] Implementación de roles avanzados que limiten el acceso de usuarios administrativos a información sensible de pacientes.
+
+---
+
+## 👤 Autor
+
+- 👨‍💻 Desarrollado por **Martin Domenech**
+- 📧 martin.domenech.99[@]gmail.com
+- 🐙 GitHub: [https://github.com/Martin-Domenech](https://github.com/Martin-Domenech)
+
+---
+
+## 📝 Licencia
+
+MIT © 2025 - Todos los derechos reservados
