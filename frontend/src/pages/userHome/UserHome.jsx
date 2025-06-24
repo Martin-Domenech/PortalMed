@@ -78,8 +78,8 @@ function UserHome() {
 
       const sanitizedPatient = { ...patient }
 
-      if (!cleanedPatient.birthdate) {
-        delete cleanedPatient.birthdate;
+      if (!sanitizedPatient.birthdate) {
+        delete sanitizedPatient.birthdate;
       }
 
       const response = await fetch(`${API_URL}/api/patients/register`, {
