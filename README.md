@@ -121,7 +121,7 @@ Si desea probar el funcionamiento de la aplicación web, puede utilizar el sigui
 ## 👤 Autor
 
 - 👨‍💻 Desarrollado por **Martin Domenech**
-- 📧 martin.domenech.99[@]gmail.com
+- 📧 martin.dome99@gmail.com
 - 🐙 GitHub: [https://github.com/Martin-Domenech](https://github.com/Martin-Domenech)
 
 ---
