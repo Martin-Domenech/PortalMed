@@ -109,6 +109,25 @@ function UpdatePatient () {
                             autoComplete="off"
                         />
             
+                        <label htmlFor="dni">DNI:</label>
+                        <input
+                            type="text"
+                            name="dni"
+                            value={patient.dni}
+                            onChange={handleChange}
+                            required
+                            autoComplete="off"
+                        />
+
+                        <label htmlFor="phone_number">Numero de telefono:</label>
+                        <input
+                            type="phone_number"
+                            name="phone_number"
+                            value={patient.phone_number}
+                            onChange={handleChange}
+                            autoComplete="off"
+                        />
+
                         <label htmlFor="email">Email:</label>
                         <input
                             type="email"
@@ -119,15 +138,6 @@ function UpdatePatient () {
                             className="email-input"
                         />
                         
-                        <label htmlFor="dni">DNI:</label>
-                        <input
-                            type="text"
-                            name="dni"
-                            value={patient.dni}
-                            onChange={handleChange}
-                            required
-                            autoComplete="off"
-                        />
             
                         <label htmlFor="birthdate">Fecha de nacimiento:</label>
                         <input
