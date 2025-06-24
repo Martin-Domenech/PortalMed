@@ -75,12 +75,19 @@ function UserHome() {
     setLoading(true)
 
     try {
+
+      const sanitizedPatient = { ...patient }
+
+      if (!cleanedPatient.birthdate) {
+        delete cleanedPatient.birthdate;
+      }
+
       const response = await fetch(`${API_URL}/api/patients/register`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(patient),
+        body: JSON.stringify(sanitizedPatient),
         credentials: 'include',
       })
       if(!response.ok) throw new Error('Error en el registro de la paciente')
