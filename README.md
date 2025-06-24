@@ -80,6 +80,15 @@ npm install
 npm run dev
 ```
 
+###  Usuario de prueba
+
+Si desea probar el funcionamiento de la aplicación web, puede utilizar el siguiente usuario de prueba:
+
+- **Username:** `User_Prueba01`  
+- **Contraseña:** `User01`
+
+> Este usuario ha sido creado exclusivamente con fines demostrativos. Cualquier modificación que realice dentro de la aplicación utilizando esta cuenta no afectará a datos reales.
+
 ## 🌐 Producción
 
 - **Frontend** desplegado en **Vercel**

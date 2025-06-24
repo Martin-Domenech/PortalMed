@@ -49,7 +49,7 @@ function Register() {
 
     return (
         <div className="register">
-            <h2>Registro</h2>
+            <h2>Nuevo Usuario</h2>
             <form onSubmit={handleSubmit} className='form'>
                 <label htmlFor="first_name">Nombre:</label>
                 <input type="text" name="first_name" value={formData.first_name} onChange={handleChange} required autoComplete="off"/>
@@ -57,11 +57,11 @@ function Register() {
                 <label htmlFor="last_name">Apellido:</label>
                 <input type="text" name="last_name" value={formData.last_name} onChange={handleChange} required autoComplete="off"/>
                 
+                <label htmlFor="username">Username:</label>
+                <input type="text" name="username" value={formData.username} onChange={handleChange} required autoComplete="off"/>
+
                 <label htmlFor="email">Email:</label>
                 <input type="email" name="email" value={formData.email} onChange={handleChange} required autoComplete="off"/>
-                
-                <label htmlFor="age">Edad:</label>
-                <input type="number" name="age" value={formData.age} onChange={handleChange} required autoComplete="off"/>
                 
                 <label htmlFor="password">Contraseña:</label>
                 <input type="password" name="password" value={formData.password} onChange={handleChange} required autoComplete="new-password"/>
@@ -72,7 +72,7 @@ function Register() {
                     <option value="admin">Admin</option>
                 </select>
                 
-                <button type="submit">Registrarse</button>
+                <button type="submit">Agregar</button>
             </form>
         </div>
     );
