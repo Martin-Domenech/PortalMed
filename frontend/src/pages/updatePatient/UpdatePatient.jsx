@@ -16,7 +16,6 @@ function UpdatePatient () {
         birthdate: '',
         dni: '',
         gender: '',
-        biologicalGender: '',
       })
     const [loading, setLoading] = useState(false)
 
@@ -149,17 +148,6 @@ function UpdatePatient () {
                             <option value="hombre">Hombre</option>
                             <option value="mujer">Mujer</option>
                             <option value="otro">Otro</option>
-                        </select>
-            
-                        <label htmlFor="biologicalGender">Género biológico:</label>
-                        <select
-                            name="biologicalGender"
-                            value={patient.biologicalGender}
-                            onChange={handleChange}
-                        >
-                            <option value="">Seleccione</option>
-                            <option value="hombre">Hombre</option>
-                            <option value="mujer">Mujer</option>
                         </select>
             
                         <p className="campos-obligatorios">* Campos obligatorios</p>
