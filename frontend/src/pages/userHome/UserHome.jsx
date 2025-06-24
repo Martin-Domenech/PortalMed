@@ -20,7 +20,6 @@ function UserHome() {
     birthdate: '',
     dni: '',
     gender: '',
-    biologicalGender: '',
   })
   const [updatePatients, setUpdatePatients] = useState(false)
   const [patients, setPatients] = useState({})
@@ -97,7 +96,6 @@ function UserHome() {
         birthdate: '',
         dni: '',
         gender: '',
-        biologicalGender: '',
       })
       setUpdatePatients(true)
 
@@ -164,16 +162,6 @@ function UserHome() {
                 autoComplete="off"
               />
 
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                name="email"
-                value={patient.email}
-                onChange={handleChange}
-                autoComplete="off"
-                className="email-input"
-              />
-
               <label htmlFor="dni">DNI:</label>
               <input
                 type="text"
@@ -182,6 +170,25 @@ function UserHome() {
                 onChange={handleChange}
                 required
                 autoComplete="off"
+              />
+
+              <label htmlFor="phone_number">Numero de telefono:</label>
+              <input
+                  type="phone_number"
+                  name="phone_number"
+                  value={patient.phone_number}
+                  onChange={handleChange}
+                  autoComplete="off"
+              />
+
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={patient.email}
+                onChange={handleChange}
+                autoComplete="off"
+                className="email-input"
               />
 
               <label htmlFor="birthdate">Fecha de nacimiento:</label>
@@ -203,17 +210,6 @@ function UserHome() {
                 <option value="hombre">Hombre</option>
                 <option value="mujer">Mujer</option>
                 <option value="otro">Otro</option>
-              </select>
-
-              <label htmlFor="biologicalGender">Género biológico:</label>
-              <select
-                name="biologicalGender"
-                value={patient.biologicalGender}
-                onChange={handleChange}
-              >
-                <option value="">Seleccione</option>
-                <option value="hombre">Hombre</option>
-                <option value="mujer">Mujer</option>
               </select>
 
               <p className="campos-obligatorios">* Campos obligatorios</p>
