@@ -168,7 +168,6 @@ function UserHome() {
                 name="dni"
                 value={patient.dni}
                 onChange={handleChange}
-                required
                 autoComplete="off"
               />
 
