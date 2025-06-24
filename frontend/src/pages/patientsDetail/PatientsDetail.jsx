@@ -21,15 +21,16 @@ function PatientsDetail () {
     const [loading, setLoading] = useState(false)
     const [open, setOpen] = useState(false)
     const [patient, setPatient] = useState({
-        first_name: '',
-        last_name: '',
-        email: '',
-        phone_number: '',
-        obre_social: '',
-        birthdate: '',
-        dni: '',
-        gender: '',
-        biologicalGender: '',
+      first_name: '',
+      last_name: '',
+      email: '',
+      phone_number: '',
+      obra_social: '',
+      plan_obra_social: '',
+      numero_obra_social: '',
+      birthdate: '',
+      dni: '',
+      gender: '',
     })
     const [openEvoForm, setOpenEvoForm] = useState(false)
     const [newEvo, setNewEvo] = useState({
@@ -211,12 +212,14 @@ function PatientsDetail () {
             <div className="personal-info">
                 <h4>Información del paciente:</h4>
                 <p><span>Nombre: </span>{patient.first_name} {patient.last_name}</p>
+                <p><span>Genero: </span>{patient.gender}</p>
                 <p><span>Email: </span>{patient.email}</p>
                 <p><span>Numero de telefono: </span>{patient.phone_number}</p>
                 <p><span>DNI: </span>{patient.dni}</p>
-                <p><span>Obra social: </span>{patient.obre_social}</p>
+                <p><span>Obra social: </span>{patient.obra_social}</p>
+                <p><span>Plan de obra social: </span>{patient.plan_obra_social}</p>
+                <p><span>Numero de obra social: </span>{patient.numero_obra_social}</p>
                 <p><span>Fecha de nacimiento: </span>{new Date(patient.birthdate).toLocaleDateString('es-AR')}</p>
-                <p><span>Genero: </span>{patient.gender}</p>
                 <div className="btns-container">
                     <button onClick={() => updatePatient(id)}>Editar <EditIcon sx={{fontSize: '1.1rem' }}/></button>
                     <button onClick={() => handleClickOpen(id)}>Eliminar <DeleteForeverIcon sx={{fontSize: '1.1rem' }}/></button>

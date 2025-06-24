@@ -16,7 +16,9 @@ function UserHome() {
     last_name: '',
     email: '',
     phone_number: '',
-    obre_social: '',
+    obra_social: '',
+    plan_obra_social: '',
+    numero_obra_social: '',
     birthdate: '',
     dni: '',
     gender: '',
@@ -99,7 +101,9 @@ function UserHome() {
         last_name: '',
         email: '',
         phone_number: '',
-        obre_social: '',
+        obra_social: '',
+        plan_obra_social: '',
+        numero_obra_social: '',
         birthdate: '',
         dni: '',
         gender: '',
@@ -180,7 +184,7 @@ function UserHome() {
 
               <label htmlFor="phone_number">Numero de telefono:</label>
               <input
-                  type="phone_number"
+                  type="tel"
                   name="phone_number"
                   value={patient.phone_number}
                   onChange={handleChange}
@@ -204,6 +208,33 @@ function UserHome() {
                 value={patient.birthdate}
                 onChange={handleChange}
                 autoComplete="off"
+              />
+
+              <label htmlFor="obra_social">Obra social:</label>
+              <input
+                  type="text"
+                  name="obra_social"
+                  value={patient.obra_social}
+                  onChange={handleChange}
+                  autoComplete="off"
+              />
+
+              <label htmlFor="plan_obra_social">Plan de la obra social:</label>
+              <input
+                  type="text"
+                  name="plan_obra_social"
+                  value={patient.plan_obra_social}
+                  onChange={handleChange}
+                  autoComplete="off"
+              />
+
+              <label htmlFor="numero_obra_social">Numero de obra social:</label>
+              <input
+                  type="text"
+                  name="numero_obra_social"
+                  value={patient.numero_obra_social}
+                  onChange={handleChange}
+                  autoComplete="off"
               />
 
               <label htmlFor="gender">Género:</label>
