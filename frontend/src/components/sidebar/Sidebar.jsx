@@ -195,6 +195,13 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
         })}
       </List>
 
+      <Divider 
+        sx={{
+          borderColor: '#2c2c2c',
+          opacity: 0.6,
+        }}
+      />
+
       <Box 
       p={2}
       sx={{
