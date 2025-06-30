@@ -29,15 +29,25 @@
 .form-update-patient .form-patient .campos-obligatorios{
     padding: 10px;
 }
-.form-update-patient .form-patient button{
+.form-update-patient .form-patient .btn-patient{
     background-color: #7BD9B1;
-    border: 1px solid black;
-    height: 30px;
+    border: 1px solid #999;
     border-radius: 3px;
 }
-.form-update-patient .form-patient button:hover{
+.form-update-patient .form-patient .btn-patient:hover{
     background-color: #71c7a2;
     cursor: pointer;
+}
+.btn-cancel {
+  background-color: #e0e0e0;
+  color: #000000;
+  border-radius: 3px;
+  border: 1px solid #999;
+}
+
+.btn-cancel:hover {
+  background-color: #d5d5d5;
+  cursor: pointer;
 }
 
 /* Media Query para Moblie */

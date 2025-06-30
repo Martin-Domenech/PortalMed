@@ -191,6 +191,7 @@ function UpdatePatient () {
             
                         <p className="campos-obligatorios">* Campos obligatorios</p>
                         <button type="submit" className="btn-patient">Modificar datos del paciente</button>
+                        <button type="button" className="btn-cancel" onClick={() => navigate(-1)}> Cancelar </button>
                         </form>
                     </div>
             )}
