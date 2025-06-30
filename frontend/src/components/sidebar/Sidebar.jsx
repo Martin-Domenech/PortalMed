@@ -86,11 +86,13 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
           position: 'absolute',
           top: 8,
           right: 8,
-          backgroundColor: theme === 'light' ? '#fff' : '#2c2c2c',
+          backgroundColor: theme === 'light' ? '#f5f5f5' : '#313131',
+          color: theme === 'light' ? '#000' : '#fff',
           boxShadow: 2,
           zIndex: 2,
+          border: '1px solid rgba(255,255,255,0.2)',
           '&:hover': {
-            backgroundColor: theme === 'light' ? '#eee' : '#444',
+            backgroundColor: theme === 'light' ? '#e0e0e0' : '#555',
           },
         }}
       >
