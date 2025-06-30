@@ -18,6 +18,7 @@
 }
 .actions-cell {
   display: flex;
+  flex-direction: row;         /* 👉 en pantallas grandes: en fila */
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
@@ -33,6 +34,13 @@
   background: transparent;
   border: none;
   cursor: pointer;
+}
+.actions-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -102,13 +110,20 @@
   }
 
   .actions-cell {
+    flex-direction: column;     /* 👉 en mobile: en columna */
     justify-content: center;
+    align-items: center;
     padding-right: 0;
-    gap: 8px;
+    gap: 6px;
   }
 
   .icon-btn-table {
     width: 28px;
     height: 28px;
+  }
+
+  .actions-wrapper {
+    flex-direction: column;
+    gap: 8px;
   }
 }

@@ -171,67 +171,72 @@ function PaginateTable({ patients, setPatients, page, setPage, search, setSearch
                     </TableCell>
                   )}
 
-                  <TableCell align="right" sx={{ fontSize: '0.95rem', paddingRight: '20px' }}>
-                    <button className="icon-btn-table" style={{ marginRight: '10px' }} onClick={() => updatePatientNavigate(p._id)} ><EditIcon sx={{fontSize: '1.2rem' }}/></button>
-                    <button className="icon-btn-table" onClick={() => handleClickOpen(p._id)}>
-                      <DeleteForeverIcon sx={{fontSize: '1.2rem' }}/>
+                  <TableCell align="right" className="actions-cell">
+                    <div className="actions-wrapper">
+                      <button className="icon-btn-table" onClick={() => updatePatientNavigate(p._id)}>
+                        <EditIcon sx={{ fontSize: '1.2rem' }} />
                       </button>
-                      <Dialog
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description"
-                        TransitionProps={{
-                          onEntering: () => {
-                            setTimeout(() => {
-                              const dialog = document.querySelector('[role="dialog"]')
-                              if (dialog) {
-                                dialog.removeAttribute('aria-hidden') 
-                                dialog.focus(); 
-                              }
-                            }, 200)
-                          }
-                        }}
-                      >
-                        <DialogTitle id="alert-dialog-title">
-                          {`Seguro que desea eliminar al paciente?`}
-                        </DialogTitle>
-                        <DialogContent>
-                          <DialogContentText id="alert-dialog-description">
-                            Si elimina este paciente, se perderán todos sus datos personales y sus evoluciones clínicas.
-                          </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                          <Button 
-                            onClick={handleClose} 
-                            variant="outlined" 
-                            sx={{
-                              color: 'gray',
+                      <button className="icon-btn-table" onClick={() => handleClickOpen(p._id)}>
+                        <DeleteForeverIcon sx={{ fontSize: '1.2rem' }} />
+                      </button>
+                    </div>
+
+                    <Dialog
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="alert-dialog-title"
+                      aria-describedby="alert-dialog-description"
+                      TransitionProps={{
+                        onEntering: () => {
+                          setTimeout(() => {
+                            const dialog = document.querySelector('[role="dialog"]')
+                            if (dialog) {
+                              dialog.removeAttribute('aria-hidden')
+                              dialog.focus()
+                            }
+                          }, 200)
+                        }
+                      }}
+                    >
+                      <DialogTitle id="alert-dialog-title">
+                        {`Seguro que desea eliminar al paciente?`}
+                      </DialogTitle>
+                      <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                          Si elimina este paciente, se perderán todos sus datos personales y sus evoluciones clínicas.
+                        </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button
+                          onClick={handleClose}
+                          variant="outlined"
+                          sx={{
+                            color: 'gray',
+                            borderColor: 'gray',
+                            '&:hover': {
+                              backgroundColor: '#f0f0f0',
                               borderColor: 'gray',
-                              '&:hover': {
-                                backgroundColor: '#f0f0f0',
-                                borderColor: 'gray',
-                              }
-                            }}
-                          >
-                            Cancelar
-                          </Button>
-                          <Button 
-                            onClick={deletePatient} 
-                            variant="contained" 
-                            autoFocus
-                            sx={{
-                              backgroundColor: '#d32f2f',
-                              color: 'white',
-                              '&:hover': {
-                                backgroundColor: '#b71c1c',
-                              }
-                            }}
-                          >
-                            Eliminar
-                          </Button>
-                        </DialogActions>
-                      </Dialog>
+                            }
+                          }}
+                        >
+                          Cancelar
+                        </Button>
+                        <Button
+                          onClick={deletePatient}
+                          variant="contained"
+                          autoFocus
+                          sx={{
+                            backgroundColor: '#d32f2f',
+                            color: 'white',
+                            '&:hover': {
+                              backgroundColor: '#b71c1c',
+                            }
+                          }}
+                        >
+                          Eliminar
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
                   </TableCell>
                 </TableRow>
               ))}
