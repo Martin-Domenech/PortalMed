@@ -107,7 +107,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
           width: open ? '100%' : '80%',
           height: 'auto',
           objectFit: 'contain',
-          mt: open ? 3 : 7,
+          mt: open ? 3 : 8,
           transition: 'all 0.3s',
           display: 'block',
           mx: 'auto',
@@ -115,7 +115,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
       />
       </Box>
 
-      <Box sx={{ mt: open ? 3 : 6 }}>
+      <Box sx={{ mt: open ? 7 : 4 }}>
         <Divider 
         sx={{
           borderColor: '#2c2c2c',
