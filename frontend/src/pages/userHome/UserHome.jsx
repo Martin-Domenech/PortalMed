@@ -5,6 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import AlertTitle from '@mui/material/AlertTitle';
 import { Alert } from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
+import useIsMobile from "../../hooks/useIsMobile";
 
 
 
@@ -23,6 +24,7 @@ function UserHome() {
     dni: '',
     gender: '',
   })
+  
   const [updatePatients, setUpdatePatients] = useState(false)
   const [patients, setPatients] = useState({})
   const [page, setPage] = useState(1)
@@ -37,7 +39,7 @@ function UserHome() {
         [name]: value 
     })  
   }
-
+  const isMobile = useIsMobile();
   const getPatients = async () => {
     try {
       setLoading(true)
@@ -146,6 +148,7 @@ function UserHome() {
               search={search}
               setSearch={setSearch}
               className="table"
+              hideEmail={isMobile}
             />
           </section>
 

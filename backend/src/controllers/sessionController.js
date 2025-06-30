@@ -53,7 +53,7 @@ export const isLogged = (req, res) => {
         return res.status(401).json({ message: 'Usuario no encontrado'})
     }
 
-    passportCall('jwt')(req,res, (err) => {
+    passportCall('jwt')(req, res, (err) => {
         if(err) return res.status(401).json({ message: 'token invalido o expirado'})
         
         authorization(['user', 'admin'])(req, res, () => {

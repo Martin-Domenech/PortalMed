@@ -24,7 +24,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useNavigate } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_PORTALMED
-function PaginateTable({ patients, setPatients, page, setPage, search, setSearch }) {
+function PaginateTable({ patients, setPatients, page, setPage, search, setSearch, hideEmail }) {
 
   const rowsPerPage = 10
   const [searchTerm, setSearchTerm] = useState("")
@@ -131,7 +131,9 @@ function PaginateTable({ patients, setPatients, page, setPage, search, setSearch
               <TableRow >
                 <TableCell sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}>Nombre</TableCell>
                 <TableCell align="left" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}>DNI</TableCell>
-                <TableCell align="center" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}>Email</TableCell>
+                {!hideEmail && (
+                  <TableCell align="center" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}>Email</TableCell>
+                )}
                 <TableCell align="left" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}></TableCell>
               </TableRow>
             </TableHead>
@@ -149,6 +151,7 @@ function PaginateTable({ patients, setPatients, page, setPage, search, setSearch
                   <TableCell component="th" scope="row" sx={{ fontSize: '0.95rem' }}>
                     <Typography
                       onClick={() => handleClickDetail(p._id)}
+                      className="nombre-paciente"
                       sx={{
                         cursor: 'pointer',          
                         color: 'black',  
@@ -162,7 +165,11 @@ function PaginateTable({ patients, setPatients, page, setPage, search, setSearch
                     </Typography>
                   </TableCell>
                   <TableCell align="left" sx={{ fontSize: '0.95rem' }}>{p.dni}</TableCell>
-                  <TableCell align="center" sx={{ fontSize: '0.95rem' }}>{p.email ? p.email : '-'}</TableCell>
+                  {!hideEmail && (
+                    <TableCell align="center" sx={{ fontSize: '0.95rem' }}>
+                      {p.email ? p.email : '-'}
+                    </TableCell>
+                  )}
 
                   <TableCell align="right" sx={{ fontSize: '0.95rem', paddingRight: '20px' }}>
                     <button className="icon-btn-table" style={{ marginRight: '10px' }} onClick={() => updatePatientNavigate(p._id)} ><EditIcon sx={{fontSize: '1.2rem' }}/></button>

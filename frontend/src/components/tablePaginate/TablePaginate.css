@@ -16,3 +16,57 @@
     border: 0;
     background-color: rgba(240, 248, 255, 0);
 }
+
+@media (max-width: 768px) {
+  /* Ajusta el espaciado del input de búsqueda */
+  .inputFilter {
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Paginación centrada y más angosta */
+  .paginated {
+    width: 100%;
+    justify-content: center;
+  }
+  .nombre-paciente{
+    font-size: 0.1rem;
+  }
+
+  /* Íconos de acción más grandes y separados */
+  .crud-icons {
+    display: flex;
+    gap: 10px;
+    padding-right: 0;
+  }
+
+  .icon-btn-table {
+    padding: 5px;
+    font-size: 0.5rem;
+  }
+
+  /* Ajustes para celdas si hace falta (según lo que estés mostrando) */
+  table {
+    font-size: 0.5rem;
+  }
+
+  /* Opcional: reduce padding dentro de la tabla si hace overflow */
+  .MuiTableCell-root {
+    padding: 6px;
+  }
+
+  /* Para que el formulario de búsqueda no sea tan ancho */
+  .MuiOutlinedInput-root {
+    width: 100% !important;
+    max-width: 250px;
+    margin-bottom: 10px;
+  }
+
+  /* Ajuste para el botón de búsqueda */
+  .MuiButton-root {
+    min-width: 30px;
+    min-height: 30px;
+  }
+}

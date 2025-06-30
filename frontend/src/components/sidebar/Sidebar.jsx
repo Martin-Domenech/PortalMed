@@ -1,352 +1,213 @@
-import styled from "styled-components";
-import closeLogo from "/assets/logo-cruz-sinbg.png";
-import openLogo from "/assets/logo-portalmed-sinbg.png"
-import { v } from "../../styles/Variables";
+import React, { useContext, useState } from 'react';
 import {
-  AiOutlineLeft,
+  Drawer,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  IconButton,
+  Divider,
+  Box,
+  Switch,
+  Typography,
+} from '@mui/material';
+import {
   AiOutlineHome,
   AiOutlineCalendar,
   AiOutlineSetting,
-  AiOutlineUsergroupAdd
-} from "react-icons/ai";
-import { MdOutlineAnalytics, MdLogout } from "react-icons/md";
-import { NavLink } from "react-router-dom";
-import { useContext } from "react";
-import { ThemeContext } from "../../App";
-import { useNavigate } from 'react-router-dom';
+  AiOutlineUsergroupAdd,
+  AiOutlineLeft,
+  AiOutlineRight,
+} from 'react-icons/ai';
+import { MdLogout } from 'react-icons/md';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { ThemeContext } from '../../App';
+import openLogo from '/assets/logo-portalmed-sinbg.png';
+import closeLogo from '/assets/logo-cruz-sinbg.png';
 
+const drawerWidth = 240;
+const collapsedWidth = 80;
+const API_URL = import.meta.env.VITE_API_PORTALMED;
 
-const API_URL = import.meta.env.VITE_API_PORTALMED
-export function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
-  const ModSidebaropen = () => {
-    setSidebarOpen(!sidebarOpen)
-  }
-  
-  const { setTheme, theme } = useContext(ThemeContext)
+const mainItems = [
+  { label: 'Home', icon: <AiOutlineHome />, to: '/' },
+  { label: 'Pacientes', icon: <AiOutlineUsergroupAdd />, to: '/' },
+  { label: 'Turnos', icon: <AiOutlineCalendar />, to: '/' },
+];
 
-  const CambiarTheme = () => {
-    setTheme((theme) => (theme === "light" ? "dark" : "light"));
-  }
+const bottomItems = [
+  { label: 'Configuración', icon: <AiOutlineSetting />, to: '/' },
+  { label: 'Salir', icon: <MdLogout />, to: '/' },
+];
 
-  const navigate = useNavigate()
+export default function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
+  const { theme, setTheme } = useContext(ThemeContext);
+  const open = sidebarOpen;
+  const toggleDrawer = () => setSidebarOpen(prev => !prev);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       const response = await fetch(`${API_URL}/api/sessions/logout`, {
         method: 'POST',
-        headers:{
-            'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-      })
-      if (!response.ok) return console.error('Error al cerrar sesion')
-      checkAuth()
-      navigate('/')
+      });
+      if (!response.ok) return console.error('Error al cerrar sesión');
+      checkAuth();
+      navigate('/');
     } catch (error) {
       console.error('Error:', error);
     }
-  }
-  
-
+  };
 
   return (
-    <Container $isOpen={sidebarOpen} $themeUse={theme}>
-      <button className="Sidebarbutton" onClick={ModSidebaropen}>
-        <AiOutlineLeft />
-      </button>
-      <div className="Logocontent">
-        <div className="imgcontent">
-          <img src={sidebarOpen ? openLogo : closeLogo} alt="logo"/>
-        </div>
-      </div>
-      <Divider2 />
-      {linksArray.map(({ icon, label, to }) => (
-        <div className="LinkContainer" key={label}>
-          <NavLink
+    <Drawer
+      variant="permanent"
+      open={open}
+      PaperProps={{
+        sx: {
+          width: open ? drawerWidth : collapsedWidth,
+          overflowX: 'hidden',
+          transition: 'width 0.3s',
+          backgroundColor: theme === 'light' ? '#fff' : '#1e1e1e',
+          color: theme === 'light' ? '#000' : '#fff',
+          borderRight: '1px solid #2c2c2c',
+          display: 'flex',
+          flexDirection: 'column',
+        },
+      }}
+    >
+      <Box sx={{ position: 'relative', height: open ? 80 : 100 }}>
+
+      <IconButton
+        onClick={toggleDrawer}
+        sx={{
+          position: 'absolute',
+          top: 8,
+          right: 8,
+          backgroundColor: theme === 'light' ? '#fff' : '#2c2c2c',
+          boxShadow: 2,
+          zIndex: 2,
+          '&:hover': {
+            backgroundColor: theme === 'light' ? '#eee' : '#444',
+          },
+        }}
+      >
+        {open ? <AiOutlineLeft /> : <AiOutlineRight />}
+      </IconButton>
+
+      <Box
+        component="img"
+        src={open ? openLogo : closeLogo}
+        alt="logo"
+        sx={{
+          width: open ? '100%' : '80%',
+          height: 'auto',
+          objectFit: 'contain',
+          mt: open ? 3 : 7,
+          transition: 'all 0.3s',
+          display: 'block',
+          mx: 'auto',
+        }}
+      />
+      </Box>
+
+      <Box sx={{ mt: open ? 3 : 6 }}>
+        <Divider 
+        sx={{
+          borderColor: '#2c2c2c',
+          opacity: 0.6,
+        }}
+      />
+      </Box>
+
+      {/* Navegación principal */}
+      <List 
+      sx={{
+        justifyContent: 'center',
+        py: 3,
+      }}>
+        {mainItems.map(({ label, icon, to }) => (
+          <ListItemButton
+            key={label}
+            component={NavLink}
             to={to}
-            className={({ isActive }) => `Links${isActive ? ` active` : ``}`}
+            sx={{
+              px: 2.5,
+            }}
           >
-            <div className="Linkicon">{icon}</div>
-            {sidebarOpen && <span>{label}</span>}
-          </NavLink>
-        </div>
-      ))}
-      <Divider />
-      {secondarylinksArray.map(({ icon, label, to }) => (
-        <div className="LinkContainer" key={label}>
-          <NavLink
-            to={to}
-            className={({ isActive }) => `Links${isActive ? ` active` : ``}`}
-            onClick={label === "Salir" ? handleLogout : undefined}
-          >
-            <div className="Linkicon">{icon}</div>
-            {sidebarOpen && <span>{label}</span>}
-          </NavLink>
-        </div>
-      ))}
-      <Divider />
-      <div className="Themecontent">
-        {sidebarOpen && <span className="titletheme">Dark mode</span>}
-        <div className="Togglecontent">
-          <div className="grid theme-container">
-            <div className="content">
-              <div className="demo">
-                <label className="switch" istheme={theme}>
-                  <input
-                    istheme={theme}
-                    type="checkbox"
-                    className="theme-swither"
-                    onClick={CambiarTheme}
-                  ></input>
-                  <span istheme={theme} className="slider round"></span>
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Container>
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: open ? 2 : 'auto',
+                justifyContent: 'center',
+                color: 'inherit',
+                fontSize: '1.5rem',
+              }}
+            >
+              {icon}
+            </ListItemIcon>
+            {open && <ListItemText primary={label} />}
+          </ListItemButton>
+        ))}
+      </List>
+
+      <Box flexGrow={1} />
+
+      <Divider 
+        sx={{
+          borderColor: '#2c2c2c',
+          opacity: 0.6,
+        }}
+      />
+
+
+      <List sx={{ mt: 1 }}>
+        {bottomItems.map(({ label, icon, to }) => {
+          const isLogout = label === 'Salir';
+          return (
+            <ListItemButton
+              key={label}
+              component={NavLink}
+              to={isLogout ? '#' : to}
+              onClick={isLogout ? handleLogout : undefined}
+              sx={{
+                px: 2.5,
+                fontSize: '1.5rem',
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 2 : 'auto',
+                  justifyContent: 'center',
+                  color: 'inherit',
+                }}
+              >
+                {icon}
+              </ListItemIcon>
+              {open && <ListItemText primary={label} />}
+            </ListItemButton>
+          );
+        })}
+      </List>
+
+      <Box 
+      p={2}
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        mt: 3
+      }}
+      >
+        {open && <Typography variant="body2">Dark Mode</Typography>}
+        <Switch
+          checked={theme === 'dark'}
+          onChange={() => setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))}
+        />
+      </Box>
+    </Drawer>
   );
 }
-//#region Data links
-const linksArray = [
-  {
-    label: "Home",
-    icon: <AiOutlineHome />,
-    to: "/",
-  },
-  {
-    label: "Pacientes",
-    icon: <AiOutlineUsergroupAdd />,
-    to: "/",
-  },
-  {
-    label: "Turnos",
-    icon: <AiOutlineCalendar />,
-    to: "/",
-  },
-  {
- 
-    
-  },
-  {
-
-  },
-];
-const secondarylinksArray = [
-  {
-    label: "Configuración",
-    icon: <AiOutlineSetting />,
-    to: "/",
-  },
-  {
-    label: "Salir",
-    icon: <MdLogout />,
-    to: "/",
-  },
-];
-//#endregion
-
-//#region STYLED COMPONENTS
-const Container = styled.div`
-  color: ${(props) => props.theme.text};
-  background: ${(props) => props.theme.bg};
-  position: sticky;
-  top: 0;
-  padding-top: ${({ $isOpen }) => ($isOpen ? '10px' : '50px')};
-  height: 100vh; 
-  display: flex;
-  flex-direction: column;
-  overflow: hidden; 
-  border-right: 1px solid ${(props) => props.theme.bgBorder};
-
-  .Sidebarbutton {
-    position: absolute;
-    top: ${v.smSpacing};
-    right: ${({ $isOpen }) => ($isOpen ? `5px` : '25px')}; /* Ajusta según el ancho del botón y el contenedor */
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: ${(props) => props.theme.bgtgderecha};
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5), /* Sombra más oscura y más difusa */
-    0 0 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    transform: ${({ $isOpen }) => ($isOpen ? `initial` : `rotate(180deg)`)}; /* Rotación según el estado abierto/cerrado */
-    border: none;
-    letter-spacing: inherit;
-    color: inherit;
-    font-size: inherit;
-    text-align: inherit;
-    padding: 0;
-    font-family: inherit;
-    outline: none;
-    z-index: 1000; /* Asegúrate de que el botón esté sobre otros elementos */
-  }
-
-  .Logocontent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: ${v.lgSpacing};
-    flex-shrink: 0;
-
-    .imgcontent {
-      display: flex;
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-      cursor: pointer;
-      transform: ${({ $isOpen }) => ($isOpen ? `scale(0.9)` : `scale(0.7)`)};
-    }
-  }
-
-  .LinkContainer {
-    margin: 8px 0;
-    padding: 0 15%;
-    flex-shrink: 0;
-
-    :hover {
-      background: ${(props) => props.theme.bg3};
-    }
-
-    .Links {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      padding: calc(${v.smSpacing}-2px) 0;
-      color: ${(props) => props.theme.text};
-      height: 50px;
-
-      .Linkicon {
-        padding: ${v.smSpacing} ${v.mdSpacing};
-        display: flex;
-
-        svg {
-          font-size: 25px;
-        }
-      }
-
-      &.active {
-        .Linkicon {
-          svg {
-            color: ${(props) => props.theme.bg4};
-          }
-        }
-      }
-    }
-  }
-
-  .Themecontent {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: auto;
-    padding: 10px 0;
-
-    .titletheme {
-      display: block;
-      padding: 10px;
-      font-weight: 500;
-      opacity: ${({ $isOpen }) => ($isOpen ? `1` : `0`)};
-      transition: all 0.3s;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-
-    .Togglecontent {
-      margin: ${({ $isOpen }) => ($isOpen ? `auto 40px` : `auto 15px`)};
-      width: 36px;
-      height: 20px;
-      padding-bottom: 30px;
-      border-radius: 10px;
-      transition: all 0.3s;
-      position: relative;
-
-      .theme-container {
-        background-blend-mode: multiply, multiply;
-        transition: 0.4s;
-
-        .grid {
-          display: grid;
-          justify-items: center;
-          align-content: center;
-          height: 100vh;
-          width: 100vw;
-          font-family: "Lato", sans-serif;
-        }
-
-        .demo {
-          font-size: 32px;
-
-          .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-
-            .theme-swither {
-              opacity: 0;
-              width: 0;
-              height: 0;
-
-              &:checked + .slider:before {
-                left: 4px;
-                content: "⚫";
-                transform: translateX(26px);
-              }
-            }
-
-            .slider {
-              position: absolute;
-              cursor: pointer;
-              top: 0;
-              left: 0;
-              right: 0;
-              bottom: 0;
-              background: ${({ $themeUse }) =>
-                $themeUse === "light" ? v.lightcheckbox : v.checkbox};
-              transition: 0.4s;
-
-              &::before {
-                position: absolute;
-                content: "⚪";
-                height: 0px;
-                width: 0px;
-                left: -10px;
-                top: 16px;
-                line-height: 0px;
-                transition: 0.4s;
-              }
-
-              &.round {
-                border-radius: 34px;
-
-                &::before {
-                  border-radius: 50%;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-const Divider = styled.div`
-  height: 1px;
-  width: 100%;
-  background: ${(props) => props.theme.bgBorder};
-  margin: ${v.lgSpacing} 0;
-`;
-const Divider2 = styled.div`
-  height: 1px;
-  width: 100%;
-  background: ${(props) => props.theme.bgBorder};
-  margin: 0;
-`;
-//#endregion
