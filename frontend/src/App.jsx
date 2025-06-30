@@ -129,7 +129,7 @@ const Container = styled.div`
     height: 100%;
     overflow-y: auto;
     transition: padding-left 0.3s;
-    padding-left: ${({ sidebarOpen }) => (sidebarOpen ? '240px' : '80px')}; /* sincronizado con Drawer */
+    padding-left: ${({ sidebarOpen }) => (sidebarOpen ? '240px' : '60px')}; /* sincronizado con Drawer */
     box-sizing: border-box;
   }
 `;

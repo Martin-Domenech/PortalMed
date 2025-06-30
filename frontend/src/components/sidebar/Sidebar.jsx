@@ -26,7 +26,7 @@ import openLogo from '/assets/logo-portalmed-sinbg.png';
 import closeLogo from '/assets/logo-cruz-sinbg.png';
 
 const drawerWidth = 240;
-const collapsedWidth = 80;
+const collapsedWidth = 60;
 const API_URL = import.meta.env.VITE_API_PORTALMED;
 
 const mainItems = [
