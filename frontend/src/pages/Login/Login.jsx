@@ -33,7 +33,6 @@ function Login ({checkAuth}) {
                 body: JSON.stringify(user),
                 credentials: 'include',
             })
-
             if(!response.ok){
                 const errorMessage = await response.text()
                 setError(true)

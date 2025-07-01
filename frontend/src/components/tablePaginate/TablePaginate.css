@@ -54,10 +54,9 @@
     align-items: center;
   }
 
-  /* Contenedor de la tabla */
   .paginatedTable {
     width: 100%;
-    overflow-x: auto; /* permite hacer scroll horizontal si se necesita */
+    overflow-x: auto; 
   }
 
   table {
@@ -76,7 +75,7 @@
     text-align: left;
   }
 
-  /* Íconos más accesibles */
+
   .crud-icons {
     gap: 8px;
     justify-content: center;
@@ -88,7 +87,7 @@
     font-size: 1rem;
   }
 
-  /* Estilo del input y botón de búsqueda */
+
   .MuiOutlinedInput-root {
     width: 90% !important;
     max-width: 300px;
@@ -102,7 +101,6 @@
     margin-left: 5px;
   }
 
-  /* Paginación centrada */
   .paginated {
     width: 100%;
     justify-content: center;
@@ -110,7 +108,7 @@
   }
 
   .actions-cell {
-    flex-direction: column;     /* 👉 en mobile: en columna */
+    flex-direction: column;    
     justify-content: center;
     align-items: center;
     padding-right: 0;

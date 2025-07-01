@@ -97,7 +97,9 @@ function PatientsDetail () {
                 'Content-Type': 'application/json',
             },
             })
-
+            if (response.status === 401) {
+              window.location.href = "/login"
+            }
             if (!response.ok) throw new Error('Error al obtener el paciente')
 
             const data = await response.json()
@@ -126,7 +128,10 @@ function PatientsDetail () {
             'Content-Type': 'application/json',
         },
         credentials: 'include',
-      });
+      })
+      if (response.status === 401) {
+        window.location.href = "/login";
+      }
       if (!response.ok) {
         const errorMessage = await response.json(); 
         throw new Error(`Error: ${errorMessage}`);
@@ -147,11 +152,14 @@ function PatientsDetail () {
           },
           credentials: 'include',
         })
-      if(!response.ok){
-        const errorMessage = await response.json(); 
-        throw new Error(`Error: ${errorMessage}`);
-      }
-       getEvolutionsByPatient()
+        if (response.status === 401) {
+          window.location.href = "/login";
+        }
+        if(!response.ok){
+          const errorMessage = await response.json(); 
+          throw new Error(`Error: ${errorMessage}`);
+        }
+        getEvolutionsByPatient()
       }catch(error){
         console.error(error);
       }
@@ -171,7 +179,10 @@ function PatientsDetail () {
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
           body: JSON.stringify(newEvo)
-        })
+        })  
+        if (response.status === 401) {
+          window.location.href = "/login"
+        }
 
         if (!response.ok) throw new Error('Error al guardar la evolución')
 
@@ -198,6 +209,9 @@ function PatientsDetail () {
             'Content-Type': 'application/json'
           }
         })
+        if (response.status === 401) {
+          window.location.href = "/login"
+        }
         if (!response.ok) throw new Error('Error al obtener evoluciones')
         const data = await response.json()
         setEvolutions(data)

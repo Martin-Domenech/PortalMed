@@ -54,6 +54,9 @@ function UserHome() {
           'Content-Type': 'application/json',
         }
       })
+      if (response.status === 401) {
+        window.location.href = "/login"
+      }
   
       if (!response.ok) {
         throw new Error('Error al obtener los pacientes')
@@ -94,6 +97,9 @@ function UserHome() {
         body: JSON.stringify(sanitizedPatient),
         credentials: 'include',
       })
+      if (response.status === 401) {
+        window.location.href = "/login"
+      }
       if(!response.ok) throw new Error('Error en el registro de la paciente')
 
       console.log('registro de paciente exitoso')

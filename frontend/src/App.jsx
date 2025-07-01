@@ -45,7 +45,24 @@ function App() {
     }
   }  
   
-  ///// revisar consumo del servidor /////
+  
+  useEffect(() => {
+    const checkVisibility = () => {
+      if (document.visibilityState === "visible") {
+        checkAuth();
+      }
+    };
+
+    checkAuth();
+
+    document.addEventListener("visibilitychange", checkVisibility);
+
+    return () => {
+      document.removeEventListener("visibilitychange", checkVisibility);
+    };
+  }, []);
+
+  /*
   useEffect(() => {
     checkAuth()
 
@@ -55,7 +72,7 @@ function App() {
 
     return () => clearInterval(intervalId);
   }, [])
-  /////
+  */
 
   if (loading) {
     return (
@@ -103,7 +120,6 @@ function App() {
 
 
   return (
-    
     <ThemeContext.Provider value={{ setTheme, theme }}>
       <ThemeProvider theme={themeStyle}>
         <BrowserRouter>

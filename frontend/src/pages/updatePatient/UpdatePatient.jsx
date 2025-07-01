@@ -31,7 +31,9 @@ function UpdatePatient () {
                 'Content-Type': 'application/json',
             },
             })
-
+            if (response.status === 401) {
+                window.location.href = "/login"
+            }
             if (!response.ok) throw new Error('Error al obtener el paciente')
 
             const data = await response.json()
@@ -67,6 +69,9 @@ function UpdatePatient () {
             body: JSON.stringify(patient),
             credentials: 'include',
           })
+          if (response.status === 401) {
+            window.location.href = "/login"
+          }
           if (!response.ok) throw new Error('Error al actualizar el paciente')
           
           console.log('Paciente actualizado exitosamente')
