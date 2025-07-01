@@ -28,7 +28,7 @@ export const login = async (req, res) => {
             httpOnly: true,
             secure: config.node_env === 'production',
             /*maxAge: 24 * 60 * 60 * 1000*/
-            maxAge: 60 * 1000,
+            maxAge: 60 * 1000, // esto es una porueba
         })
 
         res.json({ message: 'Autenticado correctamente' })
