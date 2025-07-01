@@ -27,7 +27,8 @@ export const login = async (req, res) => {
         res.cookie('authToken', token, {
             httpOnly: true,
             secure: config.node_env === 'production',
-            maxAge: 24 * 60 * 60 * 1000
+            /*maxAge: 24 * 60 * 60 * 1000*/
+            maxAge: 60 * 1000,
         })
 
         res.json({ message: 'Autenticado correctamente' })
