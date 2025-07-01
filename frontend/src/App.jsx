@@ -4,7 +4,6 @@ import React, { useState, useEffect, Fragment} from "react"
 import  Sidebar  from "./components/sidebar/Sidebar"
 import { Light, Dark } from "./styles/Themes"
 import { ThemeProvider } from "styled-components"
-import { useLocation, useNavigate } from 'react-router-dom'
 import styled from "styled-components"
 import Register from "./pages/register/Register"
 import Home from "./pages/Home/Home"
@@ -15,19 +14,22 @@ import { Footer } from "./components/footer/Footer"
 import { CircularProgress } from "@mui/material"
 import UpdatePatient from "./pages/updatePatient/UpdatePatient"
 import PatientsDetail from "./pages/patientsDetail/PatientsDetail"
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export const ThemeContext = React.createContext(null);
 const API_URL = import.meta.env.VITE_API_PORTALMED
 
 function App() {
 
+
   const [theme, setTheme] = useState("dark")
   const themeStyle = theme === "light" ? Light : Dark
+
   const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 768)
+
   const [userLogged, setUserLogged] = useState(false)
+
   const [loading, setLoading] = useState(true)
-  const location = useLocation()
-  const navigate = useNavigate()
 
   const checkAuth = async () => {
     try {
@@ -44,12 +46,7 @@ function App() {
     }
   }  
   
-  useEffect(() => {
-    if (!loading && !userLogged && location.pathname !== '/login') {
-      navigate('/login')
-    }
-  }, [userLogged, loading])
-
+  
   useEffect(() => {
     const checkVisibility = () => {
       if (document.visibilityState === "visible") {
@@ -59,12 +56,12 @@ function App() {
 
     checkAuth();
 
-    document.addEventListener("visibilitychange", checkVisibility)
+    document.addEventListener("visibilitychange", checkVisibility);
 
     return () => {
-      document.removeEventListener("visibilitychange", checkVisibility)
-    }
-  }, [])
+      document.removeEventListener("visibilitychange", checkVisibility);
+    };
+  }, []);
 
   /*
   useEffect(() => {
@@ -121,12 +118,25 @@ function App() {
     )
   }
 
+  function RedirectIfNotAuth() {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+      if (!loading && !userLogged && location.pathname !== '/login') {
+        navigate('/login');
+      }
+    }, [userLogged, loading, location.pathname]);
+
+    return null;
+  }
 
 
   return (
     <ThemeContext.Provider value={{ setTheme, theme }}>
       <ThemeProvider theme={themeStyle}>
         <BrowserRouter>
+          <RedirectIfNotAuth />
           {userLogged ? <IsAuth /> : <IsNotAuth />}
         </BrowserRouter>
       </ThemeProvider>
