@@ -119,16 +119,18 @@ function App() {
   }
 
   function RedirectIfNotAuth() {
-    const navigate = useNavigate();
-    const location = useLocation();
+    const navigate = useNavigate()
+    const location = useLocation()
 
     useEffect(() => {
-      if (!loading && !userLogged && location.pathname !== '/login') {
-        navigate('/login');
-      }
-    }, [userLogged, loading, location.pathname]);
+      const isPublicRoute = location.pathname === '/' || location.pathname === '/login'
 
-    return null;
+      if (!loading && !userLogged && !isPublicRoute) {
+        navigate('/login')
+      }
+    }, [userLogged, loading, location.pathname])
+
+    return null
   }
 
 
