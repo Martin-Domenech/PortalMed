@@ -113,6 +113,19 @@
     background-color: #0056b3;
 }
 
+.form-home textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  margin-bottom: 15px;
+  font-family: inherit;
+}
+
+
+
 /* Estilos para Movile */
 
 @media (max-width: 768px) {

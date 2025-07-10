@@ -22,12 +22,9 @@ function Home() {
             <label htmlFor="email">Email:</label>
             <input type="email" name="email"  required autoComplete="off"/>
             
-            <label htmlFor="age">Edad:</label>
-            <input type="number" name="age"  required autoComplete="off"/>
+            <label htmlFor="age">Consulta:</label>
+            <textarea name="consulta" rows="5" autoComplete="off" placeholder="Escriba su consulta aquí..."></textarea>
             
-            <label htmlFor="password">Contraseña:</label>
-            <input type="password" name="password"  required autoComplete="new-password"/>
-              
             <button type="submit">Enviar</button>
           </form>
       </section>
