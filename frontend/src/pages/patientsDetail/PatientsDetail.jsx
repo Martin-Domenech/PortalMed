@@ -20,6 +20,7 @@ function PatientsDetail () {
     const {id} = useParams()
     const [loading, setLoading] = useState(false)
     const [open, setOpen] = useState(false)
+    const [age, setAge] = useState(null)
     const [patient, setPatient] = useState({
       first_name: '',
       last_name: '',
@@ -49,24 +50,24 @@ function PatientsDetail () {
     const handleClose = () => {
       setOpen(false)
     }
-   const handleOpenEvoForm = (evo = null) => {
-  if (evo) {
-    setIsEditing(true)
-    setEvoBeingEdited(evo._id)
-    setNewEvo({
-      motivo_consulta: evo.motivo_consulta || '',
-      info_consulta: evo.info_consulta || ''
-    })
-  } else {
-    setIsEditing(false)
-    setEvoBeingEdited(null)
-    setNewEvo({
-      motivo_consulta: '',
-      info_consulta: ''
-    })
-  }
-  setOpenEvoForm(true)
-}
+    const handleOpenEvoForm = (evo = null) => {
+      if (evo) {
+        setIsEditing(true)
+        setEvoBeingEdited(evo._id)
+        setNewEvo({
+          motivo_consulta: evo.motivo_consulta || '',
+          info_consulta: evo.info_consulta || ''
+        })
+      } else {
+        setIsEditing(false)
+        setEvoBeingEdited(null)
+        setNewEvo({
+          motivo_consulta: '',
+          info_consulta: ''
+        })
+      }
+    setOpenEvoForm(true)
+    }
     const handleCloseEvoForm = () => setOpenEvoForm(false)
 
     const handleOpenDeleteEvo = (evoId) => {
@@ -86,35 +87,34 @@ function PatientsDetail () {
       })
     }
 
-
-    const getPatientById = async () => {
-        setLoading(true)
-        try {
-            const response = await fetch(`${API_URL}/api/patients/${id}`, {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            })
-            if (response.status === 401) {
-              window.location.href = "/login"
-            }
-            if (!response.ok) throw new Error('Error al obtener el paciente')
-
-            const data = await response.json()
-            setPatient(data)
-            } catch (error) {
-                console.error('Error:', error)
-            } finally {
-                setLoading(false)
-            }
-        }
-
     useEffect(() => {
         getPatientById()
         getEvolutionsByPatient()
     }, [id, newEvo])
+
+    const getPatientById = async () => {
+        setLoading(true)
+        try {
+          const response = await fetch(`${API_URL}/api/patients/${id}`, {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          })
+          if (response.status === 401) {
+            window.location.href = "/login"
+          }
+          if (!response.ok) throw new Error('Error al obtener el paciente')
+
+          const data = await response.json()
+          setPatient(data)
+        } catch (error) {
+          console.error('Error:', error)
+        } finally {
+          setLoading(false)
+        }
+    }
 
     const updatePatient =  (id) => {
         navigate(`/update-patient/${id}`)
@@ -220,6 +220,20 @@ function PatientsDetail () {
       }
     }
 
+    function ageCalc(fechaNacimiento) {
+      const hoy = new Date()
+      const nacimiento = new Date(fechaNacimiento)
+      if (isNaN(nacimiento)) return null
+      let edad = hoy.getFullYear() - nacimiento.getFullYear()
+      const mes = hoy.getMonth() - nacimiento.getMonth()
+
+      if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+        edad--
+      }
+
+      return edad
+    }
+
 
     return(
         <section className="patient-detail">
@@ -227,6 +241,7 @@ function PatientsDetail () {
                 <h4>Información del paciente:</h4>
                 <p><span>Nombre: </span>{patient.first_name} {patient.last_name}</p>
                 <p><span>Genero: </span>{patient.gender}</p>
+                <p><span>Edad: </span>{ageCalc(patient.birthdate) !== null ? `${ageCalc(patient.birthdate)} años` : "-"}</p>
                 <p><span>Email: </span>{patient.email}</p>
                 <p><span>Numero de telefono: </span>{patient.phone_number}</p>
                 <p><span>DNI: </span>{patient.dni}</p>

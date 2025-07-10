@@ -52,16 +52,16 @@ function App() {
       if (document.visibilityState === "visible") {
         checkAuth();
       }
-    };
+    }
 
-    checkAuth();
+    checkAuth()
 
-    document.addEventListener("visibilitychange", checkVisibility);
+    document.addEventListener("visibilitychange", checkVisibility)
 
     return () => {
-      document.removeEventListener("visibilitychange", checkVisibility);
-    };
-  }, []);
+      document.removeEventListener("visibilitychange", checkVisibility)
+    }
+  }, [])
 
   /*
   useEffect(() => {

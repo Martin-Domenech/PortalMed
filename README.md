@@ -44,7 +44,7 @@
 
 ## 🧪 Endpoints principales del backend
 
-- POST /api/sessions/register → Registro de usuario (Solu un user con rol: admin puede registrarlo)
+- POST /api/sessions/register → Registro de usuario (Solo un user con rol: admin puede registrarlo)
 - POST /api/sessions/login → Login (genera JWT)
 - GET /api/sessions/current → Devuelve usuario autenticado
 - POST /api/patients → Crea un nuevo paciente
@@ -54,7 +54,7 @@
 - POST /api/evos/:patientId → Crea una evolución
 - PUT /api/evos/update/:evoId → Modifica una evolucion
 - GET /api/evos/:patientId → Lista de evoluciones
-- DELETE /api/patients/delete/:evoId → Elimina una evolucion
+- DELETE /api/evos/delete/:evoId → Elimina una evolucion
 
 ## 🧑‍💻 Instalación local
 

@@ -10,7 +10,7 @@ export const getEvosById = async (req, res) => {
     try{
         const data = await getEvoByIdService(patientId)
         res.status(200).json(data)
-    }catch{
+    }catch (error){
         res.status(500).json({ message: 'Error al obtener Evoluciones del paciente' })
     }
 }
@@ -24,7 +24,7 @@ export const registerEvoController = async(req, res) => {
         }
         const result = await registerEvoService(newEvo)
         res.status(200).json({message: "Evolucion registrada con exito", "evo": result})
-    }catch{
+    }catch (error){
         console.error('Error al registrar el paciente:', error)
         res.status(500).json({ message: 'Error al registrar la evolucion', error: error.message })
     }

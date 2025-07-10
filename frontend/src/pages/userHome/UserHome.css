@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* 🔒 Bloquea scroll horizontal */
+  overflow-x: hidden;
 }
 .userHome {
   display: flex;
@@ -11,7 +11,7 @@ body {
   align-items: flex-start;
   min-height: 100vh;
   height: auto;
-  overflow-x: hidden; /* 🔒 Bloquea scroll horizontal específico */
+  overflow-x: hidden;
   overflow-y: auto;
   width: 100%;
   box-sizing: border-box;
