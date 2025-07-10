@@ -150,9 +150,10 @@ function UpdatePatient () {
                         <input
                             type="date"
                             name="birthdate"
-                            value={patient.birthdate}
+                            value={patient.birthdate ? patient.birthdate.split('T')[0] : ''}
                             onChange={handleChange}
                             autoComplete="off"
+                            max={new Date().toISOString().split('T')[0]}
                         />
 
                         <label htmlFor="obra_social">Obra social:</label>
