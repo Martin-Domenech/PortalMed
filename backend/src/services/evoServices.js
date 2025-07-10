@@ -4,7 +4,7 @@ export const getEvoByIdService = async (patientId) => {
     try{
         const data = await evoService.find({ patient: patientId }).sort({ createdAt: -1 });
         return data
-    }catch{
+    }catch (error){
         throw new Error('Error al buscar evoluciones: ' + error.message)
     }
 }
@@ -13,7 +13,7 @@ export const registerEvoService = async (newEvo) => {
     try{
         const result = await evoService.create(newEvo)
         return result
-    }catch{
+    }catch (error){
         throw new Error('Error al crear la evolución: ' + error.message)
     }
 }

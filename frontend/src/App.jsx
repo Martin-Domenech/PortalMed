@@ -63,18 +63,6 @@ function App() {
     }
   }, [])
 
-  /*
-  useEffect(() => {
-    checkAuth()
-
-    const intervalId = setInterval(() => {
-      checkAuth();
-    }, 300000); // 5 minutos = 300,000 milisegundos
-
-    return () => clearInterval(intervalId);
-  }, [])
-  */
-
   if (loading) {
     return (
       <div className="loadingCircle">

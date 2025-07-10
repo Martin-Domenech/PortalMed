@@ -158,7 +158,8 @@ function PaginateTable({ patients, setPatients, page, setPage, search, setSearch
                       sx={{
                         cursor: 'pointer',          
                         color: 'black',  
-                        fontWeight: 'bold',           
+                        fontWeight: 'bold',   
+                        fontFamily: 'Merriweather', 
                         '&:hover': {
                           color: 'blue',            
                         },

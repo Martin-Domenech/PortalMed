@@ -44,7 +44,6 @@
 }
 
 
-
 /* Estilos para Mobile */
 @media (max-width: 768px) {
   .inputFilter {
@@ -73,6 +72,7 @@
     font-size: 0.75rem;
     font-weight: 600;
     text-align: left;
+    font-family: 'Merriweather', serif;
   }
 
 

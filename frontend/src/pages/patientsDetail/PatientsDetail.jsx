@@ -238,7 +238,7 @@ function PatientsDetail () {
     return(
         <section className="patient-detail">
             <div className="personal-info">
-                <h4>Información del paciente:</h4>
+                <h4>Información Personal:</h4>
                 <p><span>Nombre: </span>{patient.first_name} {patient.last_name}</p>
                 <p><span>Genero: </span>{patient.gender}</p>
                 <p><span>Edad: </span>{ageCalc(patient.birthdate) !== null ? `${ageCalc(patient.birthdate)} años` : "-"}</p>
