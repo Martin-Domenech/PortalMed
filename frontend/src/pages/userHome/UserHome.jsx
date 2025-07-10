@@ -217,6 +217,7 @@ function UserHome() {
                 value={patient.birthdate}
                 onChange={handleChange}
                 autoComplete="off"
+                max={new Date().toISOString().split('T')[0]}
               />
 
               <label htmlFor="obra_social">Obra social:</label>
