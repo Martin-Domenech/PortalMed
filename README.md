@@ -34,6 +34,18 @@
 
 ---
 
+## ☁️ Almacenamiento de archivos con AWS S3
+
+El sistema permite subir **archivos clínicos** (imágenes, PDFs, etc.) a evoluciones médicas, los cuales son almacenados directamente en un bucket de **Amazon S3**.
+
+- ✅ Los archivos se cargan con `multer-s3` desde el backend.
+- ✅ El frontend muestra imágenes en miniatura y permite abrirlas en otra pestaña.
+- ✅ Los PDFs se listan como enlaces clickeables.
+- ✅ Se limita la carga a **5 archivos por evolución**.
+- ✅ Los archivos se renombran con un prefijo de timestamp para evitar colisiones.
+
+---
+
 ## 🔐 Autenticación
 
 - Los usuarios se registran con `username`, `password`, `first_name`, `last_name`, `email`.
