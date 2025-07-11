@@ -19,6 +19,7 @@
 - MongoDB + Mongoose
 - JWT para autenticación
 - Bcrypt para hash de contraseñas
+- AWS S3 
 - Multer (para subir archivos)
 - CORS
 - Dotenv
