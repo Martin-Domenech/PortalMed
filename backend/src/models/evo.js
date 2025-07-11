@@ -7,6 +7,7 @@ const evoCollection = "Evos"
 const evoSchema = new mongoose.Schema({
     motivo_consulta: String,
     info_consulta: String,
+    archivos: [String],
     patient: { 
         type: mongoose.Schema.Types.ObjectId,
         ref: "Patient",

@@ -18,8 +18,12 @@ export const getEvosById = async (req, res) => {
 export const registerEvoController = async(req, res) => {
     const { patientId } = req.params
     try{
+        const { motivo_consulta, info_consulta } = req.body
+        const archivos = req.files.map(file => file.location)
         const newEvo = {
-            ...req.body,
+            motivo_consulta, 
+            info_consulta,
+            archivos,
             patient: patientId,
         }
         const result = await registerEvoService(newEvo)
@@ -46,8 +50,14 @@ export const deleteEvoController = async(req, res) => {
 
 export const updateEvoController = async (req, res) => {
     const { evoId } = req.params
-    const updateEvo = req.body
+    const { motivo_consulta, info_consulta } = req.body
     try{
+        const archivos = req.files?.map(file => file.location) || []
+        const updateEvo = {
+            motivo_consulta,
+            info_consulta,
+            ...(archivos.length > 0 && { archivos })
+        }
         const result = await updateEvoService(updateEvo, evoId)
         if(result){
             return res.status(200).json({ message: "Evolucion actualizada con exito "})

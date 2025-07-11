@@ -15,12 +15,51 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from "@mui/material";
 
 const API_URL = import.meta.env.VITE_API_PORTALMED
+
+const renderArchivo = (url) => {
+  const ext = url.split('.').pop().toLowerCase()
+
+  if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext)) {
+    return (
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        <img
+          src={url}
+          alt="archivo"
+          style={{
+            height: '150px',
+            width: 'auto',
+            objectFit: 'cover',
+            borderRadius: '8px',
+            cursor: 'pointer'
+          }}
+        />
+      </a>
+    )
+  }
+
+  if (ext === 'pdf') {
+    const fileName = decodeURIComponent(url.split('/').pop().replace(/^[0-9]+-/, ''))
+    return (  
+      <a href={url} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.9rem' }}>
+       📄 {fileName}
+      </a>
+    )
+  }
+
+  const fileName = url.split('/').pop()
+  return (
+    <a href={url} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.9rem' }}>
+      📎 {fileName}
+    </a>
+  )
+}
+
+
 function PatientsDetail () {
     const navigate = useNavigate()
     const {id} = useParams()
     const [loading, setLoading] = useState(false)
     const [open, setOpen] = useState(false)
-    const [age, setAge] = useState(null)
     const [patient, setPatient] = useState({
       first_name: '',
       last_name: '',
@@ -36,7 +75,8 @@ function PatientsDetail () {
     const [openEvoForm, setOpenEvoForm] = useState(false)
     const [newEvo, setNewEvo] = useState({
       motivo_consulta: '',
-      info_consulta: ''
+      info_consulta: '',
+      archivos: null,
     })
     const [evolutions, setEvolutions] = useState([])
     const [openDeleteEvo, setOpenDeleteEvo] = useState(false)
@@ -174,11 +214,20 @@ function PatientsDetail () {
 
         const method = isEditing ? 'PUT' : 'POST'
 
+        const formData = new FormData()
+        formData.append('motivo_consulta', newEvo.motivo_consulta)
+        formData.append('info_consulta', newEvo.info_consulta)
+
+        if (newEvo.archivos) {
+          for (let i = 0; i < newEvo.archivos.length; i++) {
+            formData.append('archivos', newEvo.archivos[i])
+        }
+    }
+
         const response = await fetch(url, {
           method,
-          headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
-          body: JSON.stringify(newEvo)
+          body: formData,
         })  
         if (response.status === 401) {
           window.location.href = "/login"
@@ -189,7 +238,7 @@ function PatientsDetail () {
         const data = await response.json()
         console.log('Evolución guardada:', data)
 
-        setNewEvo({ motivo_consulta: '', info_consulta: '' })
+        setNewEvo({ motivo_consulta: '', info_consulta: '', archivos: null })
         setIsEditing(false)
         setEvoBeingEdited(null)
         setOpenEvoForm(false)
@@ -233,7 +282,6 @@ function PatientsDetail () {
 
       return edad
     }
-
 
     return(
         <section className="patient-detail">
@@ -335,6 +383,32 @@ function PatientsDetail () {
                       required
                       style={{ width: '100%', marginBottom: '1rem' }}
                     />
+                    <label style={{ display: 'block', marginBottom: '5px' }}>
+                      Adjuntar archivos o imágenes:
+                    </label>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '15px' }}>
+                      <input
+                        type="file"
+                        name="archivos"
+                        multiple
+                        onChange={(e) => setNewEvo({ ...newEvo, archivos: e.target.files })}
+                          style={{
+                            padding: '8px 12px',
+                            borderRadius: '6px',
+                            fontSize: '1rem',
+                            width: 'fit-content',
+                            cursor: 'pointer'
+                          }}
+                      />
+
+
+                      {newEvo.archivos && newEvo.archivos.length > 5 && (
+                        <span style={{ color: 'red', fontSize: '0.85rem' }}>
+                          ⚠️ Máximo permitido: 5 archivos
+                        </span>
+                      )}
+                    </div>
                     <DialogActions>
                       <Button onClick={handleCloseEvoForm}>Cancelar</Button>
                       <Button type="submit" variant="contained">Aceptar</Button>
@@ -351,6 +425,22 @@ function PatientsDetail () {
                     <div key={evo._id} className="evo-card">
                       <p><strong>Motivo de consulta:</strong> {evo.motivo_consulta}</p>
                       <p><strong>Información:</strong> {evo.info_consulta}</p>
+
+                      {evo.archivos && evo.archivos.length > 0 && (
+                        <div style={{ marginTop: '30px' }}>
+                          <p><strong>Archivos adjuntos:</strong></p>
+                          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: '10px', alignItems: 'center' }}>
+                            {evo.archivos.map((archivoUrl, index) => (
+                              <div
+                                key={index}
+                              >
+                                {renderArchivo(archivoUrl)}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
                       <div className="end-card">
                         <p className="fecha"> {new Date(evo.createdAt).toLocaleString()}</p>
                         <div className="crud-btns">
