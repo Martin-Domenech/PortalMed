@@ -282,7 +282,7 @@ function PatientsDetail () {
 
       return edad
     }
-
+    
     return(
         <section className="patient-detail">
             <div className="personal-info">
@@ -355,7 +355,7 @@ function PatientsDetail () {
                             Eliminar
                           </Button>
                         </DialogActions>
-                      </Dialog>
+                    </Dialog>
                 </div>
             </div>
             <div className="cont-evoluciones">

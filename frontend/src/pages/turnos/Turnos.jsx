@@ -182,6 +182,12 @@ function Turno () {
 
   const addTurno = async (e) => {
     e.preventDefault()
+
+    if (!horaTurno || !selectedPatient) {
+      alert("Seleccioná un horario y un paciente antes de registrar el turno.")
+      return
+    }
+
     try{
       const response = await fetch(`${API_URL}/api/turnos/addturno`, {
         method: 'POST',
@@ -289,7 +295,7 @@ function Turno () {
     const [hora, minuto] = horaStr.split(':').map(Number)
     return dayjs().hour(hora).minute(minuto).add(15, 'minute').format('HH:mm')
   }
-
+  const turnosValidos = turnos.filter(t => t.paciente && t.paciente.first_name)
   return(
     <section>
       {showSuccessAlert && (
@@ -516,7 +522,7 @@ function Turno () {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {turnos.map((turno, index) => (
+                    {turnosValidos.map((turno, index) => (
                       <TableRow
                         key={turno._id}
                         sx={{
@@ -541,12 +547,7 @@ function Turno () {
                               {turno.paciente.first_name} {turno.paciente.last_name}
                             </Typography>
                           ) : (
-                            <Typography
-                              sx={{
-                                color: 'black',
-                                fontWeight: 'bold',
-                              }}
-                            >
+                            <Typography sx={{ color: 'black', fontWeight: 'bold' }}>
                               {turno.paciente.first_name} {turno.paciente.last_name}
                             </Typography>
                           )}
