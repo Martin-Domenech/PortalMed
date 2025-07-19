@@ -1,0 +1,79 @@
+.main-config {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  color: #222;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-config h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  color: #111;
+}
+
+.config-section {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.config-section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.secretary-info {
+  background-color: #e6f8ed;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #40c393;
+}
+
+.secretary-info strong {
+  color: #1a7a54;
+}
+
+.btn-add-secretary{
+  background-color: #7BD9B1 !important;
+}
+
+@media (max-width: 600px) {
+  .main-config {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .main-config h2 {
+    font-size: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  .add-secretary {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .secretary-info {
+    padding: 1rem;
+  }
+}

@@ -21,3 +21,41 @@ export const loginUser = async (username, password) => {
     const { password: _, ...userData } = user.toObject()
     return userData
 }
+
+export const createSecretaryService = async (secretaryData, doctorId) => {
+  const { first_name, last_name, username, password } = secretaryData
+
+  const existingSecretary = await userService.findOne({
+    role: 'secretary',
+    parentDoctor: doctorId
+  })
+
+  if (existingSecretary) {
+    throw new Error('Este usuario ya tiene una secretaria asignada')
+  }
+
+  const existingUser = await userService.findOne({ username })
+  if (existingUser) {
+    throw new Error('El nombre de usuario ya está en uso')
+  }
+
+  const newSecretary = await userService.create({
+    first_name,
+    last_name,
+    username,
+    password: createHash(password),
+    role: 'secretary',
+    parentDoctor: doctorId
+  })
+
+  return newSecretary
+}
+
+export const getSecretaryByDoctorId = async (doctorId) => {
+  const secretary = await userService.findOne({
+    role: 'secretary',
+    parentDoctor: doctorId
+  }).select('_id username first_name last_name')
+
+  return secretary
+}

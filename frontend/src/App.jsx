@@ -10,10 +10,13 @@ import Home from "./pages/Home/Home"
 import Login from "./pages/Login/Login"
 import UserHome from "./pages/userHome/UserHome"
 import NavBar from "./components/navbar/Navbar"
+import Configuracion from "./pages/configuracion/Configuracion"
+import RegisterSecretary from "./pages/registerSecretary/RegisterSecretary"
 import { Footer } from "./components/footer/Footer"
 import { CircularProgress } from "@mui/material"
 import UpdatePatient from "./pages/updatePatient/UpdatePatient"
 import PatientsDetail from "./pages/patientsDetail/PatientsDetail"
+import Turnos from "./pages/turnos/Turnos"
 import { useNavigate, useLocation } from 'react-router-dom'
 
 export const ThemeContext = React.createContext(null);
@@ -85,6 +88,9 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/update-patient/:id" element={<UpdatePatient />} />
             <Route path="/patient-detail/:id" element={<PatientsDetail />} />
+            <Route path="/configuracion" element={<Configuracion />} />
+            <Route path="/turnos" element={<Turnos />} />
+            <Route path="/configuracion/register-secretary" element={<RegisterSecretary />} />
           </Routes>
         </div>
       </Container>
@@ -137,7 +143,9 @@ function App() {
 
 
 
-const Container = styled.div`
+const Container = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'sidebarOpen'
+})`
   display: flex;
   background: ${({ theme }) => theme.bgtotal};
   color: ${({ theme }) => theme.text};
@@ -149,9 +157,8 @@ const Container = styled.div`
     height: 100%;
     overflow-y: auto;
     transition: padding-left 0.3s;
-    padding-left: ${({ sidebarOpen }) => (sidebarOpen ? '240px' : '60px')}; /* sincronizado con Drawer */
+    padding-left: ${({ sidebarOpen }) => (sidebarOpen ? '240px' : '60px')};
     box-sizing: border-box;
   }
 `;
-
 export default App

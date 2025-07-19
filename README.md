@@ -1,6 +1,6 @@
 #  PortalMed
 
-**PortalMed** es una aplicación web fullstack para la **gestión de pacientes y sus historial de evoluciones médicas**. Permite a profesionales médicos registrar usuarios, cargar pacientes, registrar y consultar historiales clínicos, y almacenar archivos relacionados con cada paciente.
+**PortalMed** es una aplicación web fullstack para la **gestión de pacientes y su historial de evoluciones médicas**. Permite a profesionales médicos registrar usuarios, cargar pacientes, registrar y consultar historiales clínicos, y almacenar archivos relacionados con cada paciente.
 
 > 🔐 El sistema utiliza autenticación con JWT y ofrece una interfaz moderna construida con React.
 

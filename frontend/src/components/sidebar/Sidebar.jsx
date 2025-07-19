@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   Drawer,
   List,
@@ -32,19 +32,20 @@ const API_URL = import.meta.env.VITE_API_PORTALMED;
 const mainItems = [
   { label: 'Home', icon: <AiOutlineHome />, to: '/' },
   { label: 'Pacientes', icon: <AiOutlineUsergroupAdd />, to: '/' },
-  { label: 'Turnos', icon: <AiOutlineCalendar />, to: '/' },
+  { label: 'Turnos', icon: <AiOutlineCalendar />, to: '/turnos' },
 ];
 
 const bottomItems = [
-  { label: 'Configuración', icon: <AiOutlineSetting />, to: '/' },
+  { label: 'Configuración', icon: <AiOutlineSetting />, to: '/configuracion' },
   { label: 'Salir', icon: <MdLogout />, to: '/' },
 ];
 
 export default function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
-  const { theme, setTheme } = useContext(ThemeContext);
-  const open = sidebarOpen;
-  const toggleDrawer = () => setSidebarOpen(prev => !prev);
-  const navigate = useNavigate();
+  const { theme, setTheme } = useContext(ThemeContext)
+  const [userRole, setUserRole] = useState(null)
+  const open = sidebarOpen
+  const toggleDrawer = () => setSidebarOpen(prev => !prev)
+  const navigate = useNavigate()
 
   const handleLogout = async () => {
     try {
@@ -54,12 +55,30 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
         credentials: 'include',
       });
       if (!response.ok) return console.error('Error al cerrar sesión');
-      checkAuth();
-      navigate('/');
+      checkAuth()
+      navigate('/')
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error:', error)
     }
-  };
+  }
+
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/sessions/islogged`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+        if (!res.ok) return;
+        const data = await res.json()
+        setUserRole(data.user.role)
+      } catch (err) {
+        console.error('Error al obtener rol:', err)
+      }
+    }
+
+    fetchUserRole()
+  }, [])
 
   return (
     <Drawer
@@ -163,20 +182,25 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
           opacity: 0.6,
         }}
       />
-
-
+      
       <List sx={{ mt: 1 }}>
         {bottomItems.map(({ label, icon, to }) => {
           const isLogout = label === 'Salir';
+          const isConfiguracion = label === 'Configuración';
+          const isSecretary = userRole === 'secretary';
+
           return (
             <ListItemButton
               key={label}
               component={NavLink}
-              to={isLogout ? '#' : to}
+              to={isLogout || (isConfiguracion && isSecretary) ? '#' : to}
               onClick={isLogout ? handleLogout : undefined}
+              disabled={isConfiguracion && isSecretary}
               sx={{
                 px: 2.5,
                 fontSize: '1.5rem',
+                opacity: isConfiguracion && isSecretary ? 0.5 : 1,
+                pointerEvents: isConfiguracion && isSecretary ? 'none' : 'auto'
               }}
             >
               <ListItemIcon

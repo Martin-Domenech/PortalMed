@@ -1,4 +1,3 @@
-import React from "react"
 import './TablePaginate.css'
 import { useEffect, useState } from "react"
 import Pagination from '@mui/material/Pagination';
@@ -24,14 +23,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useNavigate } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_PORTALMED
-function PaginateTable({ patients, setPatients, page, setPage, search, setSearch, hideEmail }) {
+function PaginateTable({ patients, setPatients, page, setPage, search, setSearch, hideEmail, userRole }) {
 
   const rowsPerPage = 10
   const [searchTerm, setSearchTerm] = useState("")
   const [deleteID, setDeleteID] = useState("")
   const [open, setOpen] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleClickOpen = (id) => {
     setDeleteID(id)
@@ -133,9 +132,9 @@ function PaginateTable({ patients, setPatients, page, setPage, search, setSearch
             <TableHead sx={{ backgroundColor: '#7BD9B1' }}>
               <TableRow >
                 <TableCell sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}>Nombre</TableCell>
-                <TableCell align="left" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}>DNI</TableCell>
+                <TableCell align="left" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}>Número de teléfono</TableCell>
                 {!hideEmail && (
-                  <TableCell align="center" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}>Email</TableCell>
+                  <TableCell align="center" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}>DNI</TableCell>
                 )}
                 <TableCell align="left" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}></TableCell>
               </TableRow>
@@ -146,32 +145,37 @@ function PaginateTable({ patients, setPatients, page, setPage, search, setSearch
                   key={p._id}
                   sx={{
                     '&:last-child td, &:last-child th': { border: 0 },
-                    backgroundColor: index % 2 === 0 ? '#f7f7f7' : '#e0e0e0',
+                    backgroundColor: index % 2 === 0 ? '#f7f7f7' : '#e3ffe9ff',
                     '&:hover': { backgroundColor: '#d0d0d0' },
                     minHeight: '48px',
                   }}
                 >
                   <TableCell component="th" scope="row" sx={{ fontSize: '0.95rem' }}>
-                    <Typography
-                      onClick={() => handleClickDetail(p._id)}
-                      className="nombre-paciente"
-                      sx={{
-                        cursor: 'pointer',          
-                        color: 'black',  
-                        fontWeight: 'bold',   
-                        fontFamily: 'Merriweather', 
-                        '&:hover': {
-                          color: 'blue',            
-                        },
-                      }}
-                    >
-                      {`${p.first_name} ${p.last_name}`}
-                    </Typography>
+                    {userRole !== 'secretary' ? (
+                      <Typography
+                        onClick={() => handleClickDetail(p._id)}
+                        className="nombre-paciente"
+                        sx={{
+                          cursor: 'pointer',
+                          color: 'black',
+                          fontWeight: 'bold',
+                          '&:hover': { color: 'blue' },
+                        }}
+                      >
+                        {`${p.first_name} ${p.last_name}`}
+                      </Typography>
+                    ) : (
+                      <Typography
+                        sx={{ color: 'black', fontWeight: 'bold' }}
+                      >
+                        {`${p.first_name} ${p.last_name}`}
+                      </Typography>
+                    )}
                   </TableCell>
-                  <TableCell align="left" sx={{ fontSize: '0.95rem' }}>{p.dni}</TableCell>
+                  <TableCell align="left" sx={{ fontSize: '0.95rem' }}> {p.phone_number ? p.phone_number : '-' }</TableCell>
                   {!hideEmail && (
                     <TableCell align="center" sx={{ fontSize: '0.95rem' }}>
-                      {p.email ? p.email : '-'}
+                      {p.dni ? p.dni : '-'}
                     </TableCell>
                   )}
 

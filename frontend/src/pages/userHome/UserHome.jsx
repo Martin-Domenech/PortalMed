@@ -24,7 +24,7 @@ function UserHome() {
     dni: '',
     gender: '',
   })
-  
+  const [userRole, setUserRole] = useState("")
   const [updatePatients, setUpdatePatients] = useState(false)
   const [patients, setPatients] = useState({})
   const [page, setPage] = useState(1)
@@ -40,6 +40,7 @@ function UserHome() {
     })  
   }
   const isMobile = useIsMobile();
+  
   const getPatients = async () => {
     try {
       setLoading(true)
@@ -74,8 +75,25 @@ function UserHome() {
 
   useEffect(() => {
     getPatients()
-    setUpdatePatients(false)
+    setUpdatePatients(false) 
   }, [page, updatePatients, search])
+
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/sessions/islogged`, {
+          method: 'GET',
+          credentials: 'include'
+        })
+        if (!res.ok) throw new Error("No autenticado")
+        const data = await res.json()
+        setUserRole(data.user.role)
+      } catch (err) {
+        console.error("Error al obtener el rol", err)
+      }
+    }
+    fetchUserRole()
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -101,8 +119,6 @@ function UserHome() {
         window.location.href = "/login"
       }
       if(!response.ok) throw new Error('Error en el registro de la paciente')
-
-      console.log('registro de paciente exitoso')
 
       setPatient({
         first_name: '',
@@ -155,6 +171,7 @@ function UserHome() {
               setSearch={setSearch}
               className="table"
               hideEmail={isMobile}
+              userRole={userRole}
             />
           </section>
 

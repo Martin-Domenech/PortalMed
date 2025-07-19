@@ -122,7 +122,6 @@ function UpdatePatient () {
                             name="dni"
                             value={patient.dni}
                             onChange={handleChange}
-                            required
                             autoComplete="off"
                         />
 

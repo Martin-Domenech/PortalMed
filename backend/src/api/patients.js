@@ -6,7 +6,6 @@ import {
     getPatient,
     updatePatientController
 } from '../controllers/patientController.js'
-
 import authMiddleware from '../middlewares/authMiddlewores.js'
 
 

@@ -9,6 +9,7 @@ import initializePassport from './config/passport.config.js'
 import config from './config/config.js'
 import patientsRouter from './api/patients.js'
 import evosRouter from './api/evos.js'
+import turnosRouter from './api/turnos.js'
 
 const app = express();
 
@@ -35,10 +36,6 @@ app.use(cors({
   },
   credentials: true
 }))
-// app.use(cors({
-//     origin: 'http://localhost:5173', // Permitir solicitudes solo desde este origen
-//     credentials: true,
-// }))
 
 app.set('views', './src/views');
 
@@ -51,6 +48,7 @@ app.use(passport.initialize())
 app.use('/api/sessions', sessionsRouter)
 app.use('/api/patients', patientsRouter)
 app.use('/api/evos', evosRouter)
+app.use('/api/turnos', turnosRouter)
 
 
 app.listen(PORT, () => {
