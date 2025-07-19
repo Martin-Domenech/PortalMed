@@ -291,11 +291,8 @@ function Turno () {
     navigate(`/patient-detail/${id}`)
   }
 
-  const rangoTurnos = (horaStr) => {
-    const [hora, minuto] = horaStr.split(':').map(Number)
-    return dayjs().hour(hora).minute(minuto).add(15, 'minute').format('HH:mm')
-  }
   const turnosValidos = turnos.filter(t => t.paciente && t.paciente.first_name)
+  
   return(
     <section>
       {showSuccessAlert && (

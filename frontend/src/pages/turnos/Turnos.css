@@ -1,7 +1,6 @@
 .cont-principal{
   display: flex;
   margin: 0 auto;
-  margin-left: 30px;
 }
 
 .turnos-secction {
@@ -22,7 +21,7 @@
   width: 100%;
   background-color: #F7F7F7;
   padding: 20px;
-  gap: 10%;
+  gap: clamp(10px, 5vw, 80px);
   border-radius: 10px;
 }
 
