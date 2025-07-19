@@ -176,107 +176,129 @@ function UserHome() {
           </section>
 
           <section className="formPatientRegister">
-            <h4 >Agregar nuevo paciente:</h4>
-            <form onSubmit={handleSubmit} className="form-patient" >
+            <div className="title-form">
+              <h4>📋 Registro de nuevo paciente:</h4>
+            </div>
+            <form onSubmit={handleSubmit} className="form-patient">
 
-              <label htmlFor="first_name">* Nombre:</label>
-              <input
-                type="text"
-                name="first_name"
-                value={patient.first_name}
-                onChange={handleChange}
-                required
-                autoComplete="off"
-              />
+              <div className="form-group">
+                <label htmlFor="first_name">* Nombre:</label>
+                <input
+                  type="text"
+                  name="first_name"
+                  value={patient.first_name}
+                  onChange={handleChange}
+                  required
+                  autoComplete="off"
+                />
+              </div>
 
-              <label htmlFor="last_name">* Apellido:</label>
-              <input
-                type="text"
-                name="last_name"
-                value={patient.last_name}
-                onChange={handleChange}
-                required
-                autoComplete="off"
-              />
+              <div className="form-group">
+                <label htmlFor="last_name">* Apellido:</label>
+                <input
+                  type="text"
+                  name="last_name"
+                  value={patient.last_name}
+                  onChange={handleChange}
+                  required
+                  autoComplete="off"
+                />
+              </div>
 
-              <label htmlFor="dni">DNI:</label>
-              <input
-                type="text"
-                name="dni"
-                value={patient.dni}
-                onChange={handleChange}
-                autoComplete="off"
-              />
+              <div className="form-group">
+                <label htmlFor="dni">DNI:</label>
+                <input
+                  type="text"
+                  name="dni"
+                  value={patient.dni}
+                  onChange={handleChange}
+                  autoComplete="off"
+                />
+              </div>
 
-              <label htmlFor="phone_number">Numero de telefono:</label>
-              <input
+              <div className="form-group">
+                <label htmlFor="phone_number">Número de teléfono:</label>
+                <input
                   type="tel"
                   name="phone_number"
                   value={patient.phone_number}
                   onChange={handleChange}
                   autoComplete="off"
-              />
+                />
+              </div>
 
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                name="email"
-                value={patient.email}
-                onChange={handleChange}
-                autoComplete="off"
-                className="email-input"
-              />
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={patient.email}
+                  onChange={handleChange}
+                  autoComplete="off"
+                />
+              </div>
 
-              <label htmlFor="birthdate">Fecha de nacimiento:</label>
-              <input
-                type="date"
-                name="birthdate"
-                value={patient.birthdate}
-                onChange={handleChange}
-                autoComplete="off"
-                max={new Date().toISOString().split('T')[0]}
-              />
+              <div className="form-group">
+                <label htmlFor="birthdate">Fecha de nacimiento:</label>
+                <input
+                  type="date"
+                  name="birthdate"
+                  value={patient.birthdate}
+                  onChange={handleChange}
+                  autoComplete="off"
+                  max={new Date().toISOString().split('T')[0]}
+                />
+              </div>
 
-              <label htmlFor="obra_social">Obra social:</label>
-              <input
+              <div className="form-group">
+                <label htmlFor="obra_social">Obra social:</label>
+                <input
                   type="text"
                   name="obra_social"
                   value={patient.obra_social}
                   onChange={handleChange}
                   autoComplete="off"
-              />
+                />
+              </div>
 
-              <label htmlFor="plan_obra_social">Plan de la obra social:</label>
-              <input
+              <div className="form-group">
+                <label htmlFor="plan_obra_social">Plan de la obra social:</label>
+                <input
                   type="text"
                   name="plan_obra_social"
                   value={patient.plan_obra_social}
                   onChange={handleChange}
                   autoComplete="off"
-              />
+                />
+              </div>
 
-              <label htmlFor="numero_obra_social">Numero de obra social:</label>
-              <input
+              <div className="form-group">
+                <label htmlFor="numero_obra_social">Número de obra social:</label>
+                <input
                   type="text"
                   name="numero_obra_social"
                   value={patient.numero_obra_social}
                   onChange={handleChange}
                   autoComplete="off"
-              />
+                />
+              </div>
 
-              <label htmlFor="gender">Género:</label>
-              <select
-                name="gender"
-                value={patient.gender}
-                onChange={handleChange}
-              >
-                <option value="">Seleccione</option>
-                <option value="hombre">Hombre</option>
-                <option value="mujer">Mujer</option>
-                <option value="otro">Otro</option>
-              </select>
+              <div className="form-group">
+                <label htmlFor="gender">Género:</label>
+                <select
+                  name="gender"
+                  value={patient.gender}
+                  onChange={handleChange}
+                >
+                  <option value="">Seleccione</option>
+                  <option value="hombre">Hombre</option>
+                  <option value="mujer">Mujer</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
 
               <p className="campos-obligatorios">* Campos obligatorios</p>
+
               <button type="submit" className="btn-patient">Agregar paciente</button>
             </form>
           </section>
