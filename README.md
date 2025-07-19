@@ -1,6 +1,6 @@
 #  PortalMed
 
-**PortalMed** es una aplicación web fullstack para la **gestión de pacientes y su historial de evoluciones médicas**. Permite a profesionales médicos registrar usuarios, cargar pacientes, registrar y consultar historiales clínicos, y almacenar archivos relacionados con cada paciente.
+**PortalMed** es una aplicación web fullstack para la ** gestión de pacientes, turnos y evoluciones clínicas**. Permite a profesionales médicos registrar usuarios, cargar pacientes, registrar y consultar historiales clínicos, agendar turnos y almacenar archivos relacionados con cada paciente.
 
 > 🔐 El sistema utiliza autenticación con JWT y ofrece una interfaz moderna construida con React.
 
@@ -52,6 +52,11 @@ El sistema permite subir **archivos clínicos** (imágenes, PDFs, etc.) a evoluc
 - Los usuarios se registran con `username`, `password`, `first_name`, `last_name`, `email`.
 - El sistema genera un JWT que se guarda en una **cookie HTTPOnly**.
 - Acciones protegidas (como ver evoluciones) requieren que el token sea válido.
+- Soporte para distintos roles:
+  - user: profesional médico (tiene acceso completo)
+  - secretary: usuario administrativo (puede ver/crear pacientes y turnos, pero no accede a evoluciones clínicas)
+  - admin: acceso extendido
+
 
 ---
 
@@ -68,6 +73,11 @@ El sistema permite subir **archivos clínicos** (imágenes, PDFs, etc.) a evoluc
 - PUT /api/evos/update/:evoId → Modifica una evolucion
 - GET /api/evos/:patientId → Lista de evoluciones
 - DELETE /api/evos/delete/:evoId → Elimina una evolucion
+- POST /api/turnos → Crea un nuevo turno
+- GET /api/turnos?fecha=YYYY-MM-DD → Lista los turnos de una fecha
+- DELETE /api/turnos/:id → Elimina un turno
+
+
 
 ## 🧑‍💻 Instalación local
 
@@ -114,20 +124,14 @@ Si desea probar el funcionamiento de la aplicación web, puede utilizar el sigui
 
 ## 📸 Funcionalidades
 
-- ✅ Registro e inicio de sesión con JWT
-- ✅ Gestión de pacientes
-- ✅ Registro de evoluciones médicas (motivo y descripción)
-- ✅ Interfaz protegida para médicos logueados
-- ✅ Modal para agregar nuevas evoluciones
-- ✅ Responsive design (pantalla completa y móviles)
-
----
-
-## 📌 ToDo (futuro)
-
-- [ ] Capacidad para cargar imágenes y archivos en las evoluciones médicas.
-- [ ] Sistema de calendario para el manejo de turnos.
-- [ ] Implementación de roles avanzados que limiten el acceso de usuarios administrativos a información sensible de pacientes.
+- ✅ Registro e inicio de sesión con JWT  
+- ✅ Gestión de pacientes  
+- ✅ Registro de evoluciones médicas (motivo y descripción)  
+- ✅ Sistema de turnos por fecha  
+- ✅ Modal para agregar nuevas evoluciones  
+- ✅ Subida de archivos clínicos con AWS S3  
+- ✅ Interfaz protegida según rol  
+- ✅ Responsive design (pantalla completa y móviles)  
 
 ---
 
