@@ -87,7 +87,7 @@ function Configuracion (){
           <p>Cargando...</p>
         ) : secretary ? (
           <div className="secretary-info">
-            <Typography variant="body1">Ya existe un secretario/a registrado.</Typography>
+            <Typography variant="body1">Ya existe un usuario administrativo registrado.</Typography>
             <Typography variant="body2">
               <strong>Username:</strong> {secretary.username}
             </Typography>

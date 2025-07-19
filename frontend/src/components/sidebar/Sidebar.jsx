@@ -91,7 +91,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, checkAuth }) {
           transition: 'width 0.3s',
           backgroundColor: theme === 'light' ? '#fff' : '#1e1e1e',
           color: theme === 'light' ? '#000' : '#fff',
-          borderRight: '1px solid #2c2c2c',
+          borderRight: theme === 'light' ? '1px solid rgba(136, 136, 136, 1)' : '1px solid rgba(0, 0, 0, 0.2)',
           display: 'flex',
           flexDirection: 'column',
         },

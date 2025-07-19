@@ -102,7 +102,7 @@ function PaginateTable({ patients, setPatients, page, setPage, search, setSearch
             onChange={(e) => setSearchTerm(e.target.value)}
             style={{
               backgroundColor: 'white',
-              borderColor: 'black',
+              borderColor: '#9C9C9C',
               borderRadius: '2px',
               height: '30px',
               marginBottom: '10px',
@@ -127,16 +127,16 @@ function PaginateTable({ patients, setPatients, page, setPage, search, setSearch
             <SearchIcon />
           </Button>
         </form>
-        <TableContainer component={Paper} sx={{ boxShadow: 'none', p: 0, maxWidth: '100%', border: '1px solid black' }}>
+        <TableContainer component={Paper} sx={{ boxShadow: 'none', p: 0, maxWidth: '100%', border: '1px solid #9C9C9C' }}>
           <Table aria-label="simple table">
             <TableHead sx={{ backgroundColor: '#7BD9B1' }}>
               <TableRow >
-                <TableCell sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}>Nombre</TableCell>
-                <TableCell align="left" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}>Número de teléfono</TableCell>
+                <TableCell sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid #9C9C9C' }}>Nombre</TableCell>
+                <TableCell align="left" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid #9C9C9C' }}>Número de teléfono</TableCell>
                 {!hideEmail && (
-                  <TableCell align="center" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}>DNI</TableCell>
+                  <TableCell align="center" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid #9C9C9C' }}>DNI</TableCell>
                 )}
-                <TableCell align="left" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid black' }}></TableCell>
+                <TableCell align="left" sx={{ fontWeight: 'bold', fontSize: '1rem', borderBottom: '1px solid #9C9C9C' }}></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
