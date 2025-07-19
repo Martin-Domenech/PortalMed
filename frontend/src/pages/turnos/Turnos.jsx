@@ -344,11 +344,13 @@ function Turno () {
               </div>
               <Divider orientation="vertical" flexItem />
               <div className="nuevo-turno">  
-                <h3>Registrar nuevo turno </h3>  
-                <form onSubmit={addTurno} className="turno-form">
-
-                  <p>Fecha: {fecha.format('DD/MM/YYYY')}</p>
-                  
+                <div className="header-turno">
+                  <h2>📅 Registrar nuevo turno</h2>
+                  <div className="fecha-turno">
+                    <strong>Fecha:</strong> {fecha.format('DD/MM/YYYY')}
+                  </div>
+                </div>
+                <form onSubmit={addTurno} className="turno-form">      
                   <div className="input-patient">
                     <label htmlFor="horario-turno">Seleccionar Paciente</label>
                     <Autocomplete
@@ -473,36 +475,6 @@ function Turno () {
 
                 </form>
               </div>
-
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  display: {
-                    xs: 'none',
-                    sm: 'block'
-                  }
-                }}
-              />
-
-              {!isMobile && (
-                <div>
-                  <div className="resumen-turnos">
-                    <h3>
-                      Información del {fecha.format('DD/MM/YYYY')}
-                    </h3>
-                    <p>
-                      - Total de turnos: {turnos.length}
-                    </p>
-                    <p>
-                      {turnos.length > 0
-                        ? `- Rango horario: ${turnos[0].hora} a ${rangoTurnos(turnos[turnos.length - 1].hora)}`
-                        : '- No hay turnos en este día.'}
-                    </p>
-                  </div>
-                </div>
-              )}
-
             </div>
 
             {turnos.length === 0 ? (
