@@ -31,6 +31,10 @@
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 100%;              /* que ocupe todo el ancho disponible */
+  max-width: 300px;         /* pero no más de este valor, por estética */
+  height: auto;             /* alto automático */
+  box-sizing: border-box;   /* tener en cuenta el padding si agregás */
 }
 
 
@@ -228,41 +232,56 @@
   .calendario-addTurno {
     flex-direction: column;
     align-items: stretch;
-    padding: 15px;
-    gap: 20px;
+    padding: 10px;
+    gap: 15px;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    background-color: #f7f7f7;
   }
+
   .calendario {
-    transform: scale(93%);
-    transform-origin: top left;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto;
+    padding: 0;
+  }
+
+  .MuiDateCalendar-root {
+    width: 100% !important;
+  }
+
+  .MuiPickersSlideTransition-root {
+    width: 100% !important;
   }
 
   .nuevo-turno {
     width: 100%;
     align-items: flex-start;
-    margin: 0;
     padding: 0 10px;
+    box-sizing: border-box;
   }
-  .nuevo-turno h3{
-    margin: 0;
-    font-size: 1.1rem;
-  }
-  .nuevo-turno p{
-    font-size: 0.9rem;
+
+  .input-patient{
+    max-width: 350px;
+    width: 110%;
   }
 
   .turno-form,
-  .input-patient,
   .input-horario {
     width: 100%;
   }
 
   .select-horario {
-    width: 90%;
+    max-width: 300px;
+    width: 100%;
   }
 
   .formPatientRegisterTurnos {
     width: 100%;
+    margin: 20px 0;
+    padding: 10px;
+    box-sizing: border-box;
   }
 
   .tabla-turnos {
@@ -271,20 +290,20 @@
   }
 
   .tabla-turnos table {
-    font-size: 0.6rem !important;
+    font-size: 0.7rem !important;
   }
 
   .tabla-turnos th,
   .tabla-turnos td {
     padding: 6px;
   }
-  
+
   .tabla-turnos .MuiTableCell-root {
-    font-size: 0.6rem !important;
+    font-size: 0.7rem !important;
     padding: 4px 8px;
   }
 
   .tabla-turnos .nombre-paciente {
-    font-size: 0.65rem !important;
+    font-size: 0.7rem !important;
   }
 }

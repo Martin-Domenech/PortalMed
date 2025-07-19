@@ -120,7 +120,7 @@ function Configuracion (){
         <h3 className="section-title">🕐 Preferencias de turnos</h3>
         <p>Duración por defecto: 15 minutos</p>
         <p>Horarios disponibles: 08:00 a 21:00</p>
-        {/* Podés hacer que se puedan editar en el futuro */}
+        {/* hacer que se puedan editar en el futuro */}
       </section>
     </main>
   )

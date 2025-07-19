@@ -31,7 +31,7 @@
 - React Router DOM
 - CSS personalizado
 - Fetch API
-- Manejo de cookies con `credentials: 'include'`
+- Manejo de cookies
 
 ---
 
