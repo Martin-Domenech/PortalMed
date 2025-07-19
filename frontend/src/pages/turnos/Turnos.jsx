@@ -467,9 +467,7 @@ function Turno () {
                       ))}
                     </select>
                   </div>
-
                   <button type="submit" className="Btn-nuevo-turno">Nuevo Turno</button>
-
                 </form>
               </div>
             </div>
